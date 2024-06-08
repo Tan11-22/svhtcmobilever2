@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/banner"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:src="@drawable/banner" />
+
+        <!-- Địa chỉ tại TP. Hồ Chí Minh -->
+        <TextView
+            android:id="@+id/addressTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/banner"
+            android:text="1. Địa chỉ tại TP. Hồ Chí Minh"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addressTitle"
+            android:layout_marginTop="8dp"
+            android:text="- Cơ sở tại Quận 1: 11 Nguyễn Đình Chiểu, Phường Đakao, Quận 1\n- Cơ sở tại TP. Thủ Đức: 97 Man Thiện, Phường Hiệp Phú, Thủ Đức" />
+
+        <!-- Lãnh đạo đơn vị -->
+        <TextView
+            android:id="@+id/leadershipTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/address"
+            android:layout_marginTop="16dp"
+            android:text="2. Lãnh đạo đơn vị"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/leadership"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/leadershipTitle"
+            android:layout_marginTop="8dp"
+            android:text="- TS. Tân Hạnh, chức vụ: Phó Giám đốc\n- Email: tanhanh@ptithcm.edu.vn\n- Điện thoại: (028) 38295258" />
+
+        <!-- Tổ chức -->
+        <TextView
+            android:id="@+id/organizationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/leadership"
+            android:layout_marginTop="16dp"
+            android:text="3. Tổ chức"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/organization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/organizationTitle"
+            android:layout_marginTop="8dp"
+            android:text="- Bộ phận giảng dạy gồm có 05 khoa , bao gồm : Khoa Công nghệ thông tin 2, Khoa Kỹ thuật điện tử 2, Khoa Viễn thông 2, Khoa Quản trị Kinh doanh 2 và Khoa Cơ bản 2\n- Bộ phận quản lý gồm có 05 phòng và 01 trung tâm, bao gồm : Phòng Tổ chức – Hành chính – Quản trị, Phòng Đào tạo và Khoa học Công nghệ, Phòng Giáo vụ, Phòng Công tác Sinh viên, Phòng Kinh tế Tài chính và Trung tâm Khảo thí và Đảm bảo Chất lượng Giáo dục." />
+
+        <!-- Lĩnh vực đào tạo -->
+        <TextView
+            android:id="@+id/trainingFieldTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/organization"
+            android:layout_marginTop="16dp"
+            android:text="4. Lĩnh vực đào tạo"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/trainingField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/trainingFieldTitle"
+            android:layout_marginTop="8dp"
+            android:text="- Đào tạo cán bộ khoa học công nghệ về các lĩnh vực công nghệ, kỹ thuật, kinh tế, báo chí… bậc Đại học, Sau đại học theo chương trình chuẩn quốc gia và quốc tế theo các hình thức chính quy, vừa làm vừa học, đào tạo từ xa.\n- Tổ chức các khoá đào tạo bồi dưỡng ngắn hạn bồi dưỡng, nâng cao trình độ phục vụ nhu cầu phát triển ngành Thông tin truyền thông và của xã hội." />
+
+        <!-- Lĩnh vực nghiên cứu khoa học công nghệ -->
+        <TextView
+            android:id="@+id/researchFieldTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/trainingField"
+            android:layout_marginTop="16dp"
+            android:text="5. Lĩnh vực nghiên cứu khoa học công nghệ"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/researchField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/researchFieldTitle"
+            android:layout_marginTop="8dp"
+            android:text="- Phát triển khoa học và công nghệ phù hợp các định hướng của Bộ Thông tin và Truyền thông, Bộ Khoa học và Công nghệ (KHCN).\n- Nghiên cứu khoa học và phát triển công nghệ phục vụ nâng cao chất lượng đào tạo, nâng cao vị thế trong nước và quốc tế của Học viện.\n- Xây dựng và triển khai các hoạt động KHCN của Học viện theo định hướng Đại học ứng dụng.\n- Triển khai công tác nghiên cứu khoa học theo hướng tăng cường các bài báo quốc tế có uy tín thuộc danh mục ISI và Scopus và phát triển một số sản phẩm ứng dụng, thương mại hóa.\n- Tăng cường các hoạt động nghiên cứu khoa học (NCKH) của sinh viên và hỗ trợ các hoạt động khởi nghiệp.\n- Phát triển các Lab chuyên sâu của Học viện gắn với yêu cầu về kết quả NCKH." />
+
+    </RelativeLayout>
+</ScrollView>

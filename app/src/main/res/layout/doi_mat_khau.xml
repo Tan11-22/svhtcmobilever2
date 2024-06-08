@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_white_corner_16"
+    android:layout_margin="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:text="Đổi mật khẩu"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#F1E8E8"
+        android:background="@color/red"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textStyle="bold"-->
+<!--                android:text="Nhập mật khẩu cũ"-->
+<!--                android:textSize="16dp"-->
+
+<!--                android:id="@+id/tvNhapMK0"/>-->
+<!--            <EditText-->
+<!--                android:id="@+id/edtMK0"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="2dp"-->
+<!--                android:background="@drawable/bg_white_corner_10_border_gray"-->
+<!--                />-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Đặt mật khẩu mới"
+                android:textSize="16dp"
+
+                android:id="@+id/tvMKLan1"/>
+            <EditText
+                android:id="@+id/edtMK1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"
+                android:inputType="textPassword"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Nhập lại mật khẩu"
+                android:textSize="16dp"
+
+                android:id="@+id/tvMKLan2"/>
+            <EditText
+                android:id="@+id/edtMK2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"
+                android:inputType="textPassword"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Nhập mã OPT"
+                android:textSize="16dp"
+
+                android:id="@+id/tvNhapOTP"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <EditText
+                    android:id="@+id/edtMaOTP"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="2dp"
+                    android:background="@drawable/bg_white_corner_10_border_gray"
+                    android:hint="mã gồm 6 chữ số" />
+
+                <Button
+                    android:id="@+id/btnLayMa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/red"
+                    android:text="Lấy mã" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="20dp"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:textSize="16sp"
+                    android:id="@+id/btnHuyDMK"
+                    android:text="Hủy"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:id="@+id/btnLuuDMK"
+                    android:backgroundTint="@color/red"
+                    android:text="Lưu"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

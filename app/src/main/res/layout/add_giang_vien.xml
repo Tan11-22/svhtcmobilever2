@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_white_corner_16"
+    android:layout_margin="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:text="Thêm Giảng Viên"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#F1E8E8"
+        android:background="@color/red"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Mã khoa"
+                android:textSize="16dp"
+                android:id="@+id/tvMaKhoa"/>
+            <EditText
+                android:id="@+id/loadMaKhoa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"
+                android:enabled="false"
+                android:focusable="false"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Mã giảng viên"
+                android:textSize="16dp"
+                android:id="@+id/tvMaSV"/>
+            <EditText
+                android:id="@+id/edtMaGV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"
+                android:maxLength="10"/>
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Họ"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:id="@+id/tvHo"/>
+            <EditText
+                android:id="@+id/edtHoGV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"/>
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:id="@+id/tvTenGV"/>
+            <EditText
+                android:id="@+id/edtTenGV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Học vị"
+                android:textSize="16dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"/>
+
+            <RadioGroup
+                android:id="@+id/radioGroupHocVi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButtonThacSi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Thạc sĩ"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonTienSi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Tiến sĩ" />
+                <RadioButton
+                    android:id="@+id/radioButtonTienSiKH"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Tiến sĩ KH" />
+            </RadioGroup>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Học hàm"
+                android:textSize="16dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"/>
+
+            <RadioGroup
+                android:id="@+id/radioGroupHocHam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/radioButtonKhong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Không"
+                    android:checked="true"/>
+                <RadioButton
+                    android:id="@+id/radioButtonPhoGiaoSu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Phó giáo sư"
+                     />
+
+                <RadioButton
+                    android:id="@+id/radioButtonGiaoSu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Giáo sư" />
+
+            </RadioGroup>
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chuyên môn"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:id="@+id/tvChuyenMon"
+                android:layout_marginTop="5dp"/>
+            <EditText
+                android:id="@+id/edtChuyenMon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:text="Số điện thoại"
+                android:id="@+id/tvSDT"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/edtSDTGV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:background="@drawable/bg_white_corner_10_border_gray"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:text="Ảnh giảng viên"
+                android:id="@+id/tvAnhGV"
+                android:textSize="16dp"
+                />
+            <ImageView
+                android:id="@+id/ivAnhGV"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ptit"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+                <ImageButton
+                    android:id="@+id/btnChonAnhGV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_photo_size_select_actual_24"
+                    android:contentDescription="Chọn ảnh"/>
+                <ImageButton
+                    android:id="@+id/btnCapture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_photo_camera_24"
+                    android:contentDescription="Chụp ảnh"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="20dp"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:textSize="16sp"
+                    android:id="@+id/btnHuyGV"
+                    android:text="Hủy"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:id="@+id/btnLuuGV"
+                    android:backgroundTint="@color/red"
+                    android:text="Lưu"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

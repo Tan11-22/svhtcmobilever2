@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_white_corner_16"
+    android:layout_margin="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:text="Cập Nhật Môn Học"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#F1E8E8"
+        android:background="@color/red"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Mã môn học"
+            android:textSize="16dp"
+            android:id="@+id/tvMaMH"/>
+        <EditText
+            android:id="@+id/edtUpdateMaMH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:enabled="false"
+            android:focusable="false"
+            android:background="@drawable/bg_white_corner_10_border_gray"/>
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tên môn học"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:id="@+id/tvUpdateTenMH"/>
+        <EditText
+            android:id="@+id/edtUpdateTenMH"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:background="@drawable/bg_white_corner_10_border_gray"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Số tín chỉ"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:id="@+id/tvSoTinChi"/>
+        <EditText
+        android:id="@+id/edtUpdateSoTinChi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:inputType="number"
+        android:background="@drawable/bg_white_corner_10_border_gray"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Số tiết lý thuyết"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:id="@+id/tvSoTietLT"/>
+        <EditText
+        android:id="@+id/edtUpdateSoTietLT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:inputType="number"
+        android:background="@drawable/bg_white_corner_10_border_gray"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Số tiết thực hành"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:id="@+id/tvSoTietTH"/>
+        <EditText
+        android:id="@+id/edtUpdateSoTietTH"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:inputType="number"
+        android:background="@drawable/bg_white_corner_10_border_gray"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:textSize="16sp"
+                android:id="@+id/btnHuyUpdateMH"
+                android:text="Hủy"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:id="@+id/btnLuuUpdateMH"
+                android:backgroundTint="@color/red"
+                android:text="Lưu"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

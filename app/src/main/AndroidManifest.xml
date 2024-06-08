@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <application
+        android:name="com.example.svhtcmobile.paypal.PaypalApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.SVHTCMobile"
+        tools:targetApi="31">
+        <activity
+            android:name="com.example.svhtcmobile.Controller.KhoaController"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.CTDTController"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.HocPhiController"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.MainChiTietHocPhi"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.MainThongTinSVGV"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.MainVeNhaTruong"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.TaiKhoanController"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.DoiMatKhauActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.MainQuanTriSinhVien"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.MainQuanTriGiangVien"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.MainQuanTriMonHoc"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.QuenMatKhauActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.DKLopTinChiMain"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.HocPhiSinhVienMain"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.ChiTietThanhToanMain"
+            android:exported="false"/>
+        <activity
+            android:name="com.example.svhtcmobile.Controller.XemDiem"
+            android:exported="false"/>
+        <activity
+            android:name="com.example.svhtcmobile.Controller.DanhSachMonHocGV"
+            android:exported="false"/>
+        <activity
+            android:name="com.example.svhtcmobile.Controller.DanhSachSinhVienLTC"
+            android:exported="false"/>
+        <activity
+            android:name="com.example.svhtcmobile.Controller.DanhSachLopTinChi"
+            android:exported="false"/>
+        <activity
+            android:name="com.example.svhtcmobile.Controller.DanhSachLop"
+            android:exported="false"/>
+        <activity
+            android:name="com.example.svhtcmobile.Controller.DanhSachHeDaoTao"
+            android:exported="false"/>
+        <activity
+            android:name="com.example.svhtcmobile.Controller.DanhSachNganh"
+            android:exported="false"/>
+        <activity
+            android:name="com.example.svhtcmobile.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow>
+            <TextView
+                android:id="@+id/tvMaLTC"
+                android:layout_width="60dp"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Mã lớp tín chỉ" />
+            <TextView
+                android:id="@+id/tvMaMH"
+                android:layout_width="60dp"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="Mã môn học" />
+            <TextView
+                android:id="@+id/tvTenMH"
+                android:layout_width="50dp"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="Tên môn học" />
+            <TextView
+                android:id="@+id/tvNhom"
+                android:layout_width="50dp"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Nhóm"
+                />
+            <TextView
+                android:id="@+id/tvSoSVToiThieu"
+                android:layout_width="50dp"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Số SV tối thiểu"
+                />
+            <TextView
+                android:id="@+id/tvSTC"
+                android:layout_width="50dp"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Số tín chỉ"
+                />
+
+
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

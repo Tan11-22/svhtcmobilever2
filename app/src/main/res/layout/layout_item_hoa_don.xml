@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/underline_black">
+            <TextView
+                android:id="@+id/tvSTT"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="STT"
+                android:textSize="15dp"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/underline_black"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@id/tvNienKhoa"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="Niên khoá"
+                android:textSize="15dp"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/underline_black"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@+id/tvHocKy"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="Học kỳ"
+                android:textSize="15dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/underline_black"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@+id/tvNgayDong"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="Ngày đóng"
+                android:textSize="15dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/underline_black"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@+id/tvSoTien"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="Số tiền"
+                android:textSize="15dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
