@@ -13,22 +13,20 @@ import androidx.annotation.Nullable;
 
 
 import com.example.svhtcmobile.Model.DKLTC;
+import com.example.svhtcmobile.Model.LTCDTO;
 import com.example.svhtcmobile.R;
 import java.util.List;
 
 public class CustomDKLTCAdapter extends ArrayAdapter {
     Context context;
     int resource;
-    List<DKLTC> data;
-    List<String> dsDDKMM;
-    List<Integer> dsDDKMLTC;
-    public CustomDKLTCAdapter(@NonNull Context context, int resource, List<DKLTC> data, List<String> dsDDKMM, List<Integer>dsDDKMLTC) {
+    List<LTCDTO> data;
+
+    public CustomDKLTCAdapter(@NonNull Context context, int resource, List<LTCDTO> data ){
         super(context, resource, data);
         this.context = context;
         this.resource = resource;
         this.data = data;
-        this.dsDDKMM=dsDDKMM;
-        this.dsDDKMLTC=dsDDKMLTC;
     }
 
     @NonNull
@@ -41,22 +39,28 @@ public class CustomDKLTCAdapter extends ArrayAdapter {
         TextView tvNhom=convertView.findViewById(R.id.tvNhom);
         TextView tvSoSVToiThieu = convertView.findViewById(R.id.tvSoSVToiThieu);
         TextView tvSTC = convertView.findViewById(R.id.tvSTC);
-        DKLTC x = data.get(position);
+        LTCDTO x = data.get(position);
         tvMaMH.setText(x.getMaMH());
         tvTenMH.setText(x.getTenMH());
         tvNhom.setText(String.valueOf(x.getNhom()));
-        tvSoSVToiThieu.setText(String.valueOf(x.getSoSVToiThieu()));
-        tvSTC.setText(String.valueOf(x.getSoTinChi()));
+        tvSoSVToiThieu.setText(String.valueOf(x.getConLai()));
+        tvSTC.setText(String.valueOf(x.getSoTC()));
         tvMaLTC.setText(String.valueOf(x.getMaLTC()));
-        if(dsDDKMM.contains(x.getMaMH())){
+//        if(dsDDKMM.contains(x.getMaMH())){
+//            convertView.setEnabled(false);
+//            convertView.setOnClickListener(null);
+//            if(dsDDKMLTC.contains(x.getMaLTC())){
+//                convertView.setBackgroundColor(Color.GREEN);
+//            }
+//            else{
+//                convertView.setBackgroundColor(Color.LTGRAY);
+//            }
+//        }
+        if(x.isActive()) {
             convertView.setEnabled(false);
             convertView.setOnClickListener(null);
-            if(dsDDKMLTC.contains(x.getMaLTC())){
-                convertView.setBackgroundColor(Color.GREEN);
-            }
-            else{
-                convertView.setBackgroundColor(Color.LTGRAY);
-            }
+            convertView.setBackgroundColor(Color.LTGRAY);
+            convertView.setEnabled(false);
         }
         return convertView;
     }

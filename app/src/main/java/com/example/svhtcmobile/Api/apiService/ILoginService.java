@@ -1,5 +1,6 @@
 package com.example.svhtcmobile.Api.apiService;
 
+import com.example.svhtcmobile.Model.ApiResponse;
 import com.example.svhtcmobile.Model.CTDTDTO;
 import com.example.svhtcmobile.Model.Khoa;
 import com.example.svhtcmobile.Model.LopDTO;
@@ -21,8 +22,7 @@ public interface ILoginService {
     @POST("user/login")
     Call<JsonObject> login(@Body Map<String, String> user);
 
-    @GET("auth/info")
-    Call<JsonObject> getInfo(@Query("username") String username);
+
 
     @GET("auth/danh-sach-khoa")
     Call<List<Khoa>> getDanhSachKhoa();
@@ -67,4 +67,9 @@ public interface ILoginService {
                                            @Query("nienkhoa") String nienKhoa,
                                            @Query("hocky") int hocKy);
 
+    @GET("user/quen-mat-khau")
+    Call<ApiResponse<Object>> quenMatKhau(@Query("username") String username,
+                                          @Query("email") String email);
+    @POST("user/thay-doi-mat-khau")
+    Call<ApiResponse<Object>> doiMatKhau(@Body Map<String, String> data);
 }

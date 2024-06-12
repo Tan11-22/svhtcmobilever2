@@ -2,6 +2,7 @@ package com.example.svhtcmobile.Adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 
 
+import com.example.svhtcmobile.Api.apiService.IMonHocService;
 import com.example.svhtcmobile.Api.apiService.IQuanTriThongTin;
+import com.example.svhtcmobile.Model.ApiResponse;
 import com.example.svhtcmobile.Model.MonHoc;
 
 import java.util.List;
@@ -29,9 +32,9 @@ public class AdapterMonHoc extends ArrayAdapter<MonHoc> {
     private int mResource;
     private List<MonHoc> danhSachMonHoc; // Không cần khai báo danh sách mới ở đây
 
-    IQuanTriThongTin iQuanTriThongTin;
+    IMonHocService iQuanTriThongTin;
 
-    public AdapterMonHoc(Context context, int resource, List<MonHoc> objects, IQuanTriThongTin iQuanTriThongTin) {
+    public AdapterMonHoc(Context context, int resource, List<MonHoc> objects, IMonHocService iQuanTriThongTin) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
@@ -85,9 +88,9 @@ public class AdapterMonHoc extends ArrayAdapter<MonHoc> {
                         // Xử lý khi người dùng chấp nhận xóa môn học
                         // Gọi phương thức xóa môn học trong danh sách và cập nhật ListView
 
-                        iQuanTriThongTin.xoaMonHoc(monHoc.getMaMH()).enqueue(new Callback<Void>() {
+                        iQuanTriThongTin.xoaMonHoc(monHoc.getMaMH()).enqueue(new Callback<ApiResponse>() {
                             @Override
-                            public void onResponse(Call<Void> call, Response<Void> response) {
+                            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                                 if (response.isSuccessful()) {
                                     danhSachMonHoc.remove(position);
                                     notifyDataSetChanged();
@@ -98,7 +101,7 @@ public class AdapterMonHoc extends ArrayAdapter<MonHoc> {
                             }
 
                             @Override
-                            public void onFailure(Call<Void> call, Throwable t) {
+                            public void onFailure(Call<ApiResponse> call, Throwable t) {
                                 Toast.makeText(mContext, "Môn này đã mở lớp không thể xóa!", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -170,12 +173,13 @@ public class AdapterMonHoc extends ArrayAdapter<MonHoc> {
                 monHoc1.setSoTinChi(soTinChi);
                 monHoc1.setSoTietLT(soTietLT);
                 monHoc1.setSoTietTH(soTietTH);
-
+                Log.e("Api Response", "check ");
+                Log.e("Api Response", "check "+monHoc1.toString());
                 // Cập nhật giao diện nếu cần
                 notifyDataSetChanged();
-                iQuanTriThongTin.updateMonHoc(monHoc1).enqueue(new Callback<Void>() {
+                iQuanTriThongTin.updateMonHoc(monHoc1).enqueue(new Callback<ApiResponse>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                         if (response.isSuccessful()) {
                             monHoc.setMaMH(maMH);
                             monHoc.setTenMH(tenMH);
@@ -196,7 +200,7 @@ public class AdapterMonHoc extends ArrayAdapter<MonHoc> {
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    public void onFailure(Call<ApiResponse> call, Throwable t) {
                         // Xử lý khi có lỗi xảy ra
                     }
                 });

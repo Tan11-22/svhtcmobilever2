@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp"
-        android:text="Quên mật khẩu"
+        android:text="Đặt lại mật khẩu"
         android:textSize="20dp"
         android:textStyle="bold"
         android:gravity="center"
@@ -28,7 +28,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Nhập email tài khoản cần khôi phục mật khẩu"
+                android:text="Nhập tài khoản"
+                android:textSize="16dp"
+                android:gravity="center"
+
+                />
+            <EditText
+                android:id="@+id/edtTaiKhoan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"
+                android:gravity="center"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Nhập email khôi phục"
                 android:textSize="16dp"
                 android:gravity="center"
                 android:id="@+id/tvNhapEmail"/>
@@ -62,7 +79,7 @@
                     android:layout_weight="1"
                     android:id="@+id/btnTiepTucKP"
                     android:backgroundTint="@color/red"
-                    android:text="Tiếp tục"/>
+                    android:text="Đặt lại"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

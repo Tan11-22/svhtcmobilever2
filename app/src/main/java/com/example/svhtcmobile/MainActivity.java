@@ -56,7 +56,7 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    public static boolean checkDoiMK = false;
     ImageView ivDangNhap;
     private boolean passwordShowing;
     private boolean loginStatus = false;
@@ -81,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if(checkDoiMK){
+            logout();
+        }
     }
 
     private void setEvent() {
@@ -408,4 +411,6 @@ public class MainActivity extends AppCompatActivity {
     private void clearSharedPref(SharedPreferences pref){
         pref.edit().clear().apply();
     }
+
+
 }
