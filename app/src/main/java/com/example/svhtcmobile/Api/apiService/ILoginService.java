@@ -72,4 +72,8 @@ public interface ILoginService {
                                           @Query("email") String email);
     @POST("user/thay-doi-mat-khau")
     Call<ApiResponse<Object>> doiMatKhau(@Body Map<String, String> data);
+
+    @GET("user/thong-tin-user")
+    Call<ApiResponse<JsonObject>> getThongTin(@Query("username") String username,
+                                          @Query("role") String role);
 }

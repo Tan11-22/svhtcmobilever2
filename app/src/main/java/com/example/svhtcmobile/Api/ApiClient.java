@@ -33,7 +33,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     final static int REQUEST_CODE = 1232;
-    private static String BASE_URL = "http://10.252.2.141:8080/api/";
+
+    private static String BASE_URL = "http://192.168.2.34:8080/api/";
 
     private static Gson gson = new GsonBuilder().create();
     public static Retrofit getClient(String authToken) {
