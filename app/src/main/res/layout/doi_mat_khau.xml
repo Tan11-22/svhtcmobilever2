@@ -25,21 +25,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textStyle="bold"-->
-<!--                android:text="Nhập mật khẩu cũ"-->
-<!--                android:textSize="16dp"-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Nhập mật khẩu cũ"
+                android:textSize="16dp"
 
-<!--                android:id="@+id/tvNhapMK0"/>-->
-<!--            <EditText-->
-<!--                android:id="@+id/edtMK0"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="2dp"-->
-<!--                android:background="@drawable/bg_white_corner_10_border_gray"-->
-<!--                />-->
+                />
+            <EditText
+                android:id="@+id/edtMK0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:inputType="textPassword"
+                android:background="@drawable/bg_white_corner_10_border_gray"
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,37 +72,37 @@
                 android:padding="2dp"
                 android:background="@drawable/bg_white_corner_10_border_gray"
                 android:inputType="textPassword"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="Nhập mã OPT"
-                android:textSize="16dp"
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textStyle="bold"-->
+<!--                android:text="Nhập mã OPT"-->
+<!--                android:textSize="16dp"-->
 
-                android:id="@+id/tvNhapOTP"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="16dp">
+<!--                android:id="@+id/tvNhapOTP"/>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginTop="16dp">-->
 
-                <EditText
-                    android:id="@+id/edtMaOTP"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="2dp"
-                    android:background="@drawable/bg_white_corner_10_border_gray"
-                    android:hint="mã gồm 6 chữ số" />
+<!--                <EditText-->
+<!--                    android:id="@+id/edtMaOTP"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:padding="2dp"-->
+<!--                    android:background="@drawable/bg_white_corner_10_border_gray"-->
+<!--                    android:hint="mã gồm 6 chữ số" />-->
 
-                <Button
-                    android:id="@+id/btnLayMa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:backgroundTint="@color/red"
-                    android:text="Lấy mã" />
-            </LinearLayout>
+<!--                <Button-->
+<!--                    android:id="@+id/btnLayMa"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:backgroundTint="@color/red"-->
+<!--                    android:text="Lấy mã" />-->
+<!--            </LinearLayout>-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -25,15 +25,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.svhtcmobile.Api.ApiClient;
+import com.example.svhtcmobile.Api.apiService.ILopService;
 import com.example.svhtcmobile.Api.apiService.IQuanTriService;
 import com.example.svhtcmobile.Controller.DanhSachLop;
+import com.example.svhtcmobile.Model.ApiResponse;
 import com.example.svhtcmobile.Model.He;
 import com.example.svhtcmobile.Model.Lop;
 import com.example.svhtcmobile.Model.LopDTO;
+import com.example.svhtcmobile.Model.LopDTO1;
 import com.example.svhtcmobile.R;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,11 +49,12 @@ import retrofit2.Retrofit;
 public class CustomAdapterLop extends ArrayAdapter {
     Context context;
     int resource;
-    List<LopDTO> data;
+    List<LopDTO1> data;
     private SharedPreferences sharedPreferences;
     private IQuanTriService iQuanTriService;
+    private ILopService iLopService;
     private int check = 0;
-    public CustomAdapterLop(@NonNull Context context, int resource, @NonNull List<LopDTO> data) {
+    public CustomAdapterLop(@NonNull Context context, int resource, @NonNull List<LopDTO1> data) {
         super(context, resource, data);
         this.context = context;
         this.resource = resource;
@@ -61,6 +68,7 @@ public class CustomAdapterLop extends ArrayAdapter {
         String quyen = sharedPreferences.getString("quyen", "");
         Retrofit retrofit = ApiClient.getClient(token);
         iQuanTriService = retrofit.create(IQuanTriService.class);
+        iLopService = retrofit.create(ILopService.class);
     }
 
 
@@ -73,7 +81,7 @@ public class CustomAdapterLop extends ArrayAdapter {
         TextView tvKhoaHoc = convertView.findViewById(R.id.tvKhoaHoc);
         ImageButton imbtnChinhSua = convertView.findViewById(R.id.imbtnChinhSua);
         ImageButton imbtnXoa = convertView.findViewById(R.id.imbtnXoa);
-        LopDTO lop = data.get(position);
+        LopDTO1 lop = data.get(position);
         tvMaLop.setText(lop.getMaLop());
         tvTenLop.setText(lop.getTenLop());
         tvKhoaHoc.setText(lop.getKhoaHoc());
@@ -94,7 +102,7 @@ public class CustomAdapterLop extends ArrayAdapter {
         return convertView;
     }
 
-    private void openDialogXoaLop(LopDTO lop) {
+    private void openDialogXoaLop(LopDTO1 lop) {
         final Dialog dialog = new Dialog(this.context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.layout_dialog_xoa_lop);
@@ -117,23 +125,22 @@ public class CustomAdapterLop extends ArrayAdapter {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), lop.getMaLop(), Toast.LENGTH_LONG).show();
-               iQuanTriService.xoaLop(lop.getMaLop()).enqueue(new Callback<Void>() {
+//                Toast.makeText(view.getContext(), lop.getMaLop(), Toast.LENGTH_LONG).show();
+                iLopService.xoaLop(lop.getMaLop()).enqueue(new Callback<ApiResponse>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        if(response.code() == 200){
+                    public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                        ApiResponse apiResponse = response.body();
+                        Toast.makeText(view.getContext(), apiResponse.getStatus(), Toast.LENGTH_LONG).show();
+                        if( apiResponse.getCode() == 200) {
                             dialog.dismiss();
-                        } else {
-                            Toast.makeText(view.getContext(), "Xóa lớp thất bại!", Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable throwable) {
+                    public void onFailure(Call<ApiResponse> call, Throwable throwable) {
 
                     }
                 });
-
             }
         });
         btnHuy.setOnClickListener(new View.OnClickListener() {
@@ -146,16 +153,16 @@ public class CustomAdapterLop extends ArrayAdapter {
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
-                ((DanhSachLop) context).DocDuLieuLop();
+                ((DanhSachLop) context).loadData();
             }
         });
         dialog.show();
     }
 
-    private void openDialogSuaLop(LopDTO lop){
+    private void openDialogSuaLop(LopDTO1 lop){
         final Dialog dialog = new Dialog(this.context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.layout_dialog_sua_lop);
+        dialog.setContentView(R.layout.layout_dialog_them_lop);
 
         Window window = dialog.getWindow();
         if(window == null) return;
@@ -171,34 +178,55 @@ public class CustomAdapterLop extends ArrayAdapter {
         EditText edtTenLop = dialog.findViewById(R.id.edtTenLop);
         EditText edtNamBatDau = dialog.findViewById(R.id.edtNamBatDau);
         EditText edtNamKetThuc = dialog.findViewById(R.id.edtNamKetThuc);
-        RadioButton rdbDong = dialog.findViewById(R.id.rdbDong);
-        RadioButton rdbMo = dialog.findViewById(R.id.rdbMo);
+
         Button btnHuy = dialog.findViewById(R.id.btnHuy);
         Button btnOk = dialog.findViewById(R.id.btnOk);
-
+        Spinner spKhoa = dialog.findViewById(R.id.spKhoa);
         Spinner spHeDaoTao = dialog.findViewById(R.id.spHeDaoTao);
         List<He> danhSachHeDaoTao = new ArrayList<>();
+        List<String> danhSachKhoa = new ArrayList<>();
 
-        iQuanTriService.danhSachHeDaoTao().enqueue(new Callback<List<He>>() {
+        iLopService.danhSachHe().enqueue(new Callback<ApiResponse<List<JsonObject>>>() {
             @Override
-            public void onResponse(Call<List<He>> call, Response<List<He>> response) {
-                if(response.code() == 200){
-                    danhSachHeDaoTao.addAll(response.body());
-                    ArrayAdapter adapter_spHeDaoTao = new ArrayAdapter(dialog.getContext(), R.layout.layout_spinner, danhSachHeDaoTao);
-                    spHeDaoTao.setAdapter(adapter_spHeDaoTao);
-                    int index = 0;
-                    for(int i = 0; i < danhSachHeDaoTao.size(); i++){
-                        if(danhSachHeDaoTao.get(i).getId() == lop.getIdHe()){
-                            index = i;
-                            break;
-                        }
+            public void onResponse(Call<ApiResponse<List<JsonObject>>> call, Response<ApiResponse<List<JsonObject>>> response) {
+                ApiResponse<List<JsonObject>> apiResponse = response.body();
+                if (apiResponse.getCode() == 200) {
+                    List<JsonObject> hes = apiResponse.getData();
+                    for (JsonObject he : hes) {
+                        He he1 = new He(he.get("ID_HE").getAsInt(), he.get("TEN_HE").getAsString());
+                        danhSachHeDaoTao.add(he1);
+                        ArrayAdapter adapter_spHeDaoTao = new ArrayAdapter(dialog.getContext(), R.layout.layout_spinner, danhSachHeDaoTao);
+                        spHeDaoTao.setAdapter(adapter_spHeDaoTao);
                     }
-                    spHeDaoTao.setSelection(index);
+                }else {
+                    Toast.makeText(context,"Không thể tải dữ liệu!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<He>> call, Throwable throwable) {
+            public void onFailure(Call<ApiResponse<List<JsonObject>>> call, Throwable throwable) {
+
+            }
+        });
+        iLopService.danhSachKhoa().enqueue(new Callback<ApiResponse<List<JsonObject>>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<List<JsonObject>>> call, Response<ApiResponse<List<JsonObject>>> response) {
+                ApiResponse<List<JsonObject>> apiResponse = response.body();
+                if (apiResponse.getCode() == 200) {
+                    List<JsonObject> khoas = apiResponse.getData();
+                    for(JsonObject khoa : khoas) {
+                        String khoa1 = khoa.get("makhoa").getAsString().trim() + "-"+khoa.get("tenkhoa").getAsString();
+                        danhSachKhoa.add(khoa1);
+                        ArrayAdapter adapter_spKhoa = new ArrayAdapter(dialog.getContext(), R.layout.layout_spinner, danhSachKhoa);
+                        spKhoa.setAdapter(adapter_spKhoa);
+                    }
+                }else {
+                    Toast.makeText(context,"Không thể tải dữ liệu!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<List<JsonObject>>> call, Throwable throwable) {
 
             }
         });
@@ -207,12 +235,17 @@ public class CustomAdapterLop extends ArrayAdapter {
         edtTenLop.setText(lop.getTenLop());
         edtNamBatDau.setText(lop.getKhoaHoc().substring(0, 4));
         edtNamKetThuc.setText(lop.getKhoaHoc().substring(5));
-        if(lop.getTrangThai()){ // lop dang mo
-            rdbMo.setChecked(true);
-            rdbDong.setChecked(false);
-        } else { // lop dong
-            rdbMo.setChecked(false);
-            rdbDong.setChecked(true);
+        for (int i =0; i< danhSachHeDaoTao.size();i++) {
+            if(lop.getTenHe().equals(danhSachHeDaoTao.get(i).getTenHe())) {
+                spHeDaoTao.setSelection(i);
+                break;
+            }
+        }
+        for (int i=0; i< danhSachKhoa.size();i ++ ) {
+            if(lop.getTenKhoa().equals(danhSachKhoa.get(i).split("-")[0])){
+                spKhoa.setSelection(i);
+                break;
+            }
         }
 
         btnHuy.setOnClickListener(new View.OnClickListener() {
@@ -226,32 +259,36 @@ public class CustomAdapterLop extends ArrayAdapter {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LopDTO tmp = new LopDTO();
-                tmp.setMaLop(edtMaLop.getText().toString());
-                tmp.setTenLop(edtTenLop.getText().toString());
-                tmp.setKhoaHoc(edtNamBatDau.getText().toString() + "-" + edtNamKetThuc.getText().toString());
-                tmp.setTrangThai(rdbMo.isChecked() ? true : false);
+                Map<String, Object> dataRequset = new HashMap<>();
+                dataRequset.put("maLop", edtMaLop.getText().toString().trim());
+                dataRequset.put("tenLop",edtTenLop.getText().toString().trim());
+                dataRequset.put("khoaHoc1",edtNamBatDau.getText().toString().trim() );
+                dataRequset.put("khoaHoc2", edtNamKetThuc.getText().toString().trim());
+                String maKhoa = spKhoa.getSelectedItem().toString().split("-")[0];
+                dataRequset.put("maKhoa", maKhoa);
+                String tmp = spHeDaoTao.getSelectedItem().toString();
                 for(He he : danhSachHeDaoTao){
-                    if(he.getTenHe().equals(spHeDaoTao.getSelectedItem().toString())){
-                        tmp.setIdHe(he.getId());
-                        break;
+                    if(tmp.equals(he.getTenHe())){
+                        dataRequset.put("idHe", he.getId());
                     }
                 }
-//                Toast.makeText(view.getContext(), "Click xoa " + tmp.getIdHe(), Toast.LENGTH_LONG).show();
-                iQuanTriService.capNhatLop(tmp).enqueue(new Callback<Void>() {
+                iLopService.updateLopHoc(dataRequset).enqueue(new Callback<ApiResponse>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        if(response.code() == 200){
+                    public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                        ApiResponse apiResponse = response.body();
+                        Toast.makeText(context,apiResponse.getStatus(),Toast.LENGTH_SHORT).show();
+                        if (apiResponse.getCode() == 200) {
                             check = 1;
                             dialog.dismiss();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable throwable) {
+                    public void onFailure(Call<ApiResponse> call, Throwable throwable) {
 
                     }
                 });
+
 
             }
         });
@@ -259,8 +296,10 @@ public class CustomAdapterLop extends ArrayAdapter {
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialogInterface) {
-                if(check == 1)
-                    ((DanhSachLop) context).DocDuLieuLop();
+                if(check == 1){
+                    ((DanhSachLop) context).loadData();
+                }
+
             }
         });
         dialog.show();

@@ -17,20 +17,20 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Mã lớp"
-                android:layout_weight="4"
+                android:layout_weight="2"
                 android:id="@+id/tvMaLop" />
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="Tên lớp"
                 android:gravity="center"
-                android:layout_weight="5"
+                android:layout_weight="4"
                 android:id="@+id/tvTenLop"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:text="Khóa học"
                 android:id="@+id/tvKhoaHoc" />
             <ImageButton

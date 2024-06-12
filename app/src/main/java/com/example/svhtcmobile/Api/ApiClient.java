@@ -34,6 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
     final static int REQUEST_CODE = 1232;
     private static String BASE_URL = "http://10.252.2.141:8080/api/";
+
     private static Gson gson = new GsonBuilder().create();
     public static Retrofit getClient(String authToken) {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {

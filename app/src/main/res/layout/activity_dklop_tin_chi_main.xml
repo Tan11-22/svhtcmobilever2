@@ -128,38 +128,29 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         app:cardCornerRadius="8dp">
-    <TableLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:orientation="vertical">
-        <TableRow>
+        android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
+                android:layout_marginLeft="10dp"
                 android:text="Lớp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:text="Môn học"/>
-        </TableRow>
-        <TableRow>
+
             <Spinner
+                android:layout_marginLeft="20dp"
                 android:id="@+id/spMaLop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"/>
 
-            <Spinner
-                android:id="@+id/spTenMH"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"/>
-        </TableRow>
 
-    </TableLayout>
+
+
+    </LinearLayout>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
 
@@ -219,7 +210,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="Số sinh viên tối thiểu" />
+                        android:text="Còn lại" />
 
                     <TextView
                         android:layout_width="50dp"

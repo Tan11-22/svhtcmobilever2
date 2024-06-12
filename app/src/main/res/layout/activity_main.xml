@@ -188,46 +188,46 @@
 
                         android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/round_back_red"
-                            android:gravity="center"
-                            android:orientation="vertical">
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="50dp"-->
+<!--                            android:layout_height="50dp"-->
+<!--                            android:background="@drawable/round_back_red"-->
+<!--                            android:gravity="center"-->
+<!--                            android:orientation="vertical">-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Khoa"
-                                android:textSize="10dp" />
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Khoa"-->
+<!--                                android:textSize="10dp" />-->
 
-                            <ImageView
-                                android:id="@+id/ivKhoa"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/khoa" />
-                        </LinearLayout>
+<!--                            <ImageView-->
+<!--                                android:id="@+id/ivKhoa"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:src="@drawable/khoa" />-->
+<!--                        </LinearLayout>-->
 
-                        <LinearLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="10dp"
-                            android:background="@drawable/round_back_red"
-                            android:gravity="center"
-                            android:orientation="vertical">
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="50dp"-->
+<!--                            android:layout_height="50dp"-->
+<!--                            android:layout_marginLeft="10dp"-->
+<!--                            android:background="@drawable/round_back_red"-->
+<!--                            android:gravity="center"-->
+<!--                            android:orientation="vertical">-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Tài khoản"
-                                android:textSize="10dp" />
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Tài khoản"-->
+<!--                                android:textSize="10dp" />-->
 
-                            <ImageView
-                                android:id="@+id/ivAccount"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/acc" />
-                        </LinearLayout>
+<!--                            <ImageView-->
+<!--                                android:id="@+id/ivAccount"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:src="@drawable/acc" />-->
+<!--                        </LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="50dp"
@@ -293,26 +293,26 @@
                                 android:src="@drawable/giangvien" />
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="10dp"
-                            android:background="@drawable/round_back_red"
-                            android:gravity="center"
-                            android:orientation="vertical">
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="50dp"-->
+<!--                            android:layout_height="50dp"-->
+<!--                            android:layout_marginLeft="10dp"-->
+<!--                            android:background="@drawable/round_back_red"-->
+<!--                            android:gravity="center"-->
+<!--                            android:orientation="vertical">-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Ngành"
-                                android:textSize="10dp" />
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Ngành"-->
+<!--                                android:textSize="10dp" />-->
 
-                            <ImageView
-                                android:id="@+id/ivNganh"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/nganh" />
-                        </LinearLayout>
+<!--                            <ImageView-->
+<!--                                android:id="@+id/ivNganh"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:src="@drawable/nganh" />-->
+<!--                        </LinearLayout>-->
 
 
                     </LinearLayout>
@@ -408,26 +408,26 @@
                                 android:src="@drawable/lop" />
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="20dp"
-                            android:background="@drawable/round_back_red"
-                            android:gravity="center"
-                            android:orientation="vertical">
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="50dp"-->
+<!--                            android:layout_height="50dp"-->
+<!--                            android:layout_marginLeft="20dp"-->
+<!--                            android:background="@drawable/round_back_red"-->
+<!--                            android:gravity="center"-->
+<!--                            android:orientation="vertical">-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Hệ đào tạo"
-                                android:textSize="10dp" />
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="Hệ đào tạo"-->
+<!--                                android:textSize="10dp" />-->
 
-                            <ImageView
-                                android:id="@+id/ivHe"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/he" />
-                        </LinearLayout>
+<!--                            <ImageView-->
+<!--                                android:id="@+id/ivHe"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:src="@drawable/he" />-->
+<!--                        </LinearLayout>-->
                     </LinearLayout>
 
                 </LinearLayout>
@@ -438,7 +438,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingTop="2dp"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -512,7 +513,6 @@
                                 android:layout_height="30dp"
                                 android:src="@drawable/baseline_table_chart_24" />
                         </LinearLayout>
-
                         <LinearLayout
                             android:layout_width="50dp"
                             android:layout_height="50dp"
@@ -524,15 +524,37 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="CTĐT"
-                                android:textSize="10dp" />
+                                android:text="Đóng học phí"
+                                android:gravity="center"
+                                android:textSize="8dp" />
 
                             <ImageView
-                                android:id="@+id/ivCTDT"
+                                android:id="@+id/ivDongHP"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:src="@drawable/ctdt" />
+                                android:src="@drawable/moneytransfer" />
                         </LinearLayout>
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="50dp"-->
+<!--                            android:layout_height="50dp"-->
+<!--                            android:layout_marginLeft="20dp"-->
+<!--                            android:background="@drawable/round_back_red"-->
+<!--                            android:gravity="center"-->
+<!--                            android:orientation="vertical">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="CTĐT"-->
+<!--                                android:textSize="10dp" />-->
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/ivCTDT"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:src="@drawable/ctdt" />-->
+<!--                        </LinearLayout>-->
                     </LinearLayout>
 
                 </LinearLayout>
