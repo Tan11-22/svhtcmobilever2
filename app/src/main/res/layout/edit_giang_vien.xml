@@ -44,8 +44,29 @@
                 android:src="@drawable/ptit"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="20dp"
                 android:layout_gravity="center"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/ivAnhGVUpdate"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/btnChonAnhUpdateGV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_photo_size_select_actual_24"
+                    android:contentDescription="Chọn ảnh" />
+
+                <ImageButton
+                    android:id="@+id/btnCaptureUpdateGV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_photo_camera_24"
+                    android:contentDescription="Chụp ảnh" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -124,22 +145,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
+                <RadioButton
+                    android:id="@+id/radioButtonCuNhan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Cử nhân"
+                    android:checked="true" />
                 <RadioButton
                     android:id="@+id/radioButtonThacSi"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:text="Thạc sĩ"
-                    android:checked="true" />
+                     />
 
                 <RadioButton
                     android:id="@+id/radioButtonTienSi"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:text="Tiến sĩ" />
+
                 <RadioButton
                     android:id="@+id/radioButtonTienSiKH"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:text="Tiến sĩ KH" />
             </RadioGroup>

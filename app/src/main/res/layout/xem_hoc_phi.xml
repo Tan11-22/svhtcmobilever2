@@ -52,7 +52,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Quản lí học phí"
+                        android:text="Xen học phí"
                         android:textSize="18dp"
                         />
 
@@ -97,62 +97,6 @@
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="8dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="Niên khóa:"
-                        android:textSize="13sp"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="10dp"/>
-
-                    <Spinner
-                        android:id="@+id/spNienKhoa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left"
-                        android:text="Học kì:"
-                        android:textSize="13sp"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="10dp"/>
-
-                    <Spinner
-                        android:id="@+id/spHocKi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="left" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -172,35 +116,26 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="Mã SV"
+                        android:text="Niên khóa"
                         android:textStyle="bold"
                         android:gravity="center"
                         android:textSize="12sp"
-                        android:layout_weight="2"/>
+                        android:layout_weight="3"/>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="Họ và tên"
+                        android:text="Học kì"
                         android:textStyle="bold"
                         android:gravity="center"
                         android:textSize="12sp"
-                        android:layout_weight="4"/>
-
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:text="Số tiền"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textSize="12sp"
-                        android:layout_weight="3"
                         android:layout_marginLeft="10dp"
-                        />
+                        android:layout_weight="1"/>
+
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="Ngày đóng"
+                        android:text="Học phí"
                         android:textStyle="bold"
                         android:gravity="center"
                         android:textSize="12sp"
@@ -210,10 +145,25 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:text="Đã đóng"
                         android:textStyle="bold"
                         android:gravity="center"
                         android:textSize="12sp"
-                        android:layout_weight="1"/>
+                        android:layout_weight="2"
+                        android:layout_marginLeft="10dp"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="Còn nợ"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:layout_weight="2"
+                        android:layout_marginLeft="10dp"
+                        />
+
+
 
 
 
@@ -222,7 +172,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:descendantFocusability="blocksDescendants"
-                    android:id="@+id/lvDanhSachHocPhi"/>
+                    android:id="@+id/lvHocPhiSV"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

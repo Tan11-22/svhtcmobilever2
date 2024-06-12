@@ -206,35 +206,30 @@
                         android:layout_height="wrap_content"
                         android:text="Họ"
                         android:textStyle="bold"
-
-
-                        android:paddingLeft="30dp" />
+                        android:paddingLeft="35dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tên"
                         android:textStyle="bold"
-
-                        android:paddingLeft="45dp" />
+                        android:paddingLeft="50dp" />
 
 
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:text="Chuyên môn"
                         android:textStyle="bold"
                         android:gravity="center"
-                        android:layout_weight="5"
-                        android:paddingLeft="20dp" />
+                        android:paddingLeft="45dp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="SĐT"
                         android:textStyle="bold"
                         android:gravity="center"
-                        android:layout_weight="8"
-                        android:paddingLeft="10dp" />
+                        android:paddingLeft="30dp" />
 
                 </LinearLayout>
                 <ListView

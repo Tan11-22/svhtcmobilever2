@@ -1,9 +1,18 @@
 package com.example.svhtcmobile.Adapter;
 
+import static android.app.Activity.RESULT_OK;
+import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
+
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,17 +28,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.svhtcmobile.Api.ApiClient;
 import com.example.svhtcmobile.Api.apiService.IQuanTriThongTin;
 import com.example.svhtcmobile.Model.GiangVien;
 import com.example.svhtcmobile.R;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,23 +56,22 @@ public class AdapterGiangVien extends ArrayAdapter<GiangVien> {
 
     private Context mContext;
     private int mResource;
-    ArrayAdapter gvAdapter;
-    String base64 = "";
-
-
+    private Activity activity;
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private Bitmap photo;
     ImageView ivAnhGV;
     IQuanTriThongTin iQuanTriThongTin;
 
     private List<GiangVien> DSGV; // Không cần khai báo danh sách mới ở đây
 
     private List<GiangVien> filteredGiangVienList;
-    public AdapterGiangVien(Context context, int resource, List<GiangVien> objects , IQuanTriThongTin iQuanTriThongTin) {
+    public AdapterGiangVien(Context context, int resource, List<GiangVien> objects , IQuanTriThongTin iQuanTriThongTin,Activity activity) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
         DSGV = objects; // Sử dụng danh sách được truyền vào
-        filteredGiangVienList = new ArrayList<>(objects);
         this.iQuanTriThongTin = iQuanTriThongTin;
+        this.activity = activity;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -156,7 +172,8 @@ public class AdapterGiangVien extends ArrayAdapter<GiangVien> {
         EditText edtSDT = dialogView.findViewById(R.id.edtSDTGVUpdate);
         EditText edtChuyenMon = dialogView.findViewById(R.id.edtChuyenMonUpdate);
         EditText edtEmail = dialogView.findViewById(R.id.edtEmailUpdate);
-//        ImageButton btnChonAnh = dialogView.findViewById(R.id.btnChonAnhUpdate);
+        ImageButton btnChonAnh = dialogView.findViewById(R.id.btnChonAnhUpdateGV);
+        ImageButton btnChupAnh = dialogView.findViewById(R.id.btnCaptureUpdateGV);
         ivAnhGV = dialogView.findViewById(R.id.ivAnhGVUpdate);
         // Tương tự với các thành phần khác
         Button btnLuu = dialogView.findViewById(R.id.btnLuuGVUpdate);
@@ -177,8 +194,10 @@ public class AdapterGiangVien extends ArrayAdapter<GiangVien> {
             radioGroupHocHam.check(R.id.radioButtonKhong);
         }
         else radioGroupHocHam.check(R.id.radioButtonPhoGiaoSu);
-
-        if (giangVien.getHocvi().equals("Thạc sĩ")) {
+        if (giangVien.getHocvi().equals("Cử nhân")) {
+            radioGroupHocVi.check(R.id.radioButtonCuNhan);
+        }
+        else if (giangVien.getHocvi().equals("Thạc sĩ")) {
             radioGroupHocVi.check(R.id.radioButtonThacSi);
         }
         else if (giangVien.getHocvi().equals("Tiến sĩ")){
@@ -187,7 +206,7 @@ public class AdapterGiangVien extends ArrayAdapter<GiangVien> {
         else radioGroupHocVi.check(R.id.radioButtonTienSiKH);
         if (giangVien.getHinhanh()!= null){
             Glide.with(mContext)
-                    .load(ApiClient.getBaseUrl()+ "auth/get-img?name="+giangVien.getHinhanh())
+                    .load(ApiClient.getBaseUrl()+ "thong-tin/sinh-vien/get-img?name="+giangVien.getHinhanh())
                     .into(ivAnhGV);
         }
 
@@ -220,19 +239,30 @@ public class AdapterGiangVien extends ArrayAdapter<GiangVien> {
                 }
                 else hocham = "Không";
                 int selectedHocViId = radioGroupHocVi.getCheckedRadioButtonId();
-                if (selectedHocViId == R.id.radioButtonThacSi) {
+                if (selectedHocViId == R.id.radioButtonCuNhan) {
+                    hocvi = "Cử nhân";
+                }
+                else if (selectedHocViId == R.id.radioButtonThacSi) {
                     hocvi = "Thạc sĩ";
                 }
                 else if (selectedHocViId == R.id.radioButtonTienSi) {
                     hocvi = "Tiến sĩ";
                 }
-                else hocvi = "Tiến sĩ Khoa Học";
+                else hocvi = "Tiến sĩ khoa học";
                 GiangVien new1 = new GiangVien(magv, ho, ten, hocham,hocvi,chuyenmon, sdt, giangVien.getHinhanh(),email,maKhoa1);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), byteArray);
+                MultipartBody.Part in = MultipartBody.Part.createFormData("img", "", requestBody);
+                Gson gson = new Gson();
+                String dataGV = gson.toJson(new1);
+                RequestBody gv1 = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), dataGV);
 
-
-                iQuanTriThongTin.updateGiangVien(new1).enqueue(new Callback<Void>() {
+                iQuanTriThongTin.updateGiangVien(gv1,in).enqueue(new Callback<JsonObject>()  {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                        JsonObject jsOb= response.body();
                         if (response.isSuccessful()) {
                             giangVien.setHo(ho);
                             giangVien.setTen(ten);
@@ -241,6 +271,7 @@ public class AdapterGiangVien extends ArrayAdapter<GiangVien> {
                             giangVien.setChuyenmon(chuyenmon);
                             giangVien.setSdt(sdt);
                             giangVien.setEmail(email);
+                            giangVien.setHinhanh(jsOb.get("filename").getAsString());
                             notifyDataSetChanged();
                             Toast.makeText(mContext, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
                             // Đóng dialog
@@ -253,7 +284,7 @@ public class AdapterGiangVien extends ArrayAdapter<GiangVien> {
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
                         // Xử lý khi có lỗi xảy ra
                     }
                 });
@@ -269,34 +300,46 @@ public class AdapterGiangVien extends ArrayAdapter<GiangVien> {
                 dialog.dismiss();
             }
         });
+        btnChonAnh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                activity.startActivityForResult(intent, PICK_IMAGE_REQUEST);
+            }
+        });
+
+        btnChupAnh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cameraIntent = new Intent(ACTION_IMAGE_CAPTURE);
+                if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA}, 1);
+                    return;
+                }
+                activity.startActivityForResult(cameraIntent, 99);
+            }
+        });
 
 
     }
-    public static void setBase64ImageToImageView(String base64ImageString, ImageView imageView) {
-        // Giải mã chuỗi base64 thành mảng byte
-        byte[] decodedString = Base64.decode(base64ImageString, Base64.DEFAULT);
+    public void handleActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri uri = data.getData();
+            try {
+                photo = MediaStore.Images.Media.getBitmap(mContext.getContentResolver(), uri);
+                if (ivAnhGV != null && photo != null) {
+                    ivAnhGV.setImageBitmap(photo);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.e("TAG", "Error loading image: " + e.getMessage());
+            }
+        }
 
-        // Chuyển đổi mảng byte thành đối tượng Bitmap
-        Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-
-        // Đặt Bitmap vào ImageView để hiển thị ảnh
-        imageView.setImageBitmap(bitmap);
+        if( requestCode == 99 && resultCode == Activity.RESULT_OK) {
+            photo = (Bitmap) data.getExtras().get("data");
+            ivAnhGV.setImageBitmap(photo);
+        }
     }
-//    public void filterByMaGV(String maGV) {
-//        filteredGiangVienList.clear(); // Xóa danh sách giáo viên đã lọc
-//
-//        if (maGV.isEmpty()) { // Nếu mã giáo viên rỗng, hiển thị tất cả giáo viên
-//            filteredGiangVienList.addAll(DSGV);
-//        } else {
-//            String lowerCaseQuery = maGV.toLowerCase(); // Chuyển đổi mã giáo viên sang chữ thường
-//
-//            // Lọc danh sách giáo viên gốc để chỉ chứa các giáo viên có mã giáo viên chứa maGV
-//            for (GiangVien gv : DSGV) {
-//                if (gv.getMagv().toLowerCase().contains(lowerCaseQuery)) {
-//                    filteredGiangVienList.add(gv);
-//                }
-//            }
-//        }
-//        notifyDataSetChanged(); // Thông báo cho ListView cập nhật dữ liệu
-//    }
 }
