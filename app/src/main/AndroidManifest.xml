@@ -32,11 +32,14 @@
         <activity
             android:name="com.example.svhtcmobile.Controller.CTDTController"
             android:exported="false" />
-        <activity
-            android:name="com.example.svhtcmobile.Controller.HocPhiController"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name="com.example.svhtcmobile.Controller.HocPhiController"-->
+<!--            android:exported="false" />-->
         <activity
             android:name="com.example.svhtcmobile.Controller.MainChiTietHocPhi"
+            android:exported="false" />
+        <activity
+            android:name="com.example.svhtcmobile.Controller.QuanTriLTC"
             android:exported="false" />
         <activity
             android:name="com.example.svhtcmobile.Controller.MainThongTinSVGV"
@@ -78,11 +81,17 @@
             android:name="com.example.svhtcmobile.Controller.DanhSachMonHocGV"
             android:exported="false"/>
         <activity
-            android:name="com.example.svhtcmobile.Controller.DanhSachSinhVienLTC"
+        android:name="com.example.svhtcmobile.Controller.DanhSachSinhVienLTC"
+        android:exported="false"/>
+        <activity
+            android:name="com.example.svhtcmobile.Controller.DanhSachHocPhi"
             android:exported="false"/>
         <activity
-            android:name="com.example.svhtcmobile.Controller.DanhSachLopTinChi"
+            android:name="com.example.svhtcmobile.Controller.HocPhiSinhVienView"
             android:exported="false"/>
+<!--        <activity-->
+<!--            android:name="com.example.svhtcmobile.Controller.DanhSachLopTinChi"-->
+<!--            android:exported="false"/>-->
         <activity
             android:name="com.example.svhtcmobile.Controller.DanhSachLop"
             android:exported="false"/>

@@ -28,19 +28,22 @@ import com.example.svhtcmobile.Api.apiService.ILoginService;
 import com.example.svhtcmobile.Controller.CTDTController;
 import com.example.svhtcmobile.Controller.DKLopTinChiMain;
 import com.example.svhtcmobile.Controller.DanhSachHeDaoTao;
+import com.example.svhtcmobile.Controller.DanhSachHocPhi;
 import com.example.svhtcmobile.Controller.DanhSachLop;
-import com.example.svhtcmobile.Controller.DanhSachLopTinChi;
+//import com.example.svhtcmobile.Controller.DanhSachLopTinChi;
 import com.example.svhtcmobile.Controller.DanhSachMonHocGV;
 import com.example.svhtcmobile.Controller.DanhSachNganh;
-import com.example.svhtcmobile.Controller.DoiMatKhauActivity;
-import com.example.svhtcmobile.Controller.HocPhiController;
+//import com.example.svhtcmobile.Controller.DoiMatKhauActivity;
+//import com.example.svhtcmobile.Controller.HocPhiController;
 import com.example.svhtcmobile.Controller.HocPhiSinhVienMain;
+import com.example.svhtcmobile.Controller.HocPhiSinhVienView;
 import com.example.svhtcmobile.Controller.KhoaController;
 import com.example.svhtcmobile.Controller.MainQuanTriGiangVien;
-import com.example.svhtcmobile.Controller.MainQuanTriMonHoc;
+//import com.example.svhtcmobile.Controller.MainQuanTriMonHoc;
 import com.example.svhtcmobile.Controller.MainQuanTriSinhVien;
 import com.example.svhtcmobile.Controller.MainThongTinSVGV;
-import com.example.svhtcmobile.Controller.QuenMatKhauActivity;
+import com.example.svhtcmobile.Controller.QuanTriLTC;
+//import com.example.svhtcmobile.Controller.QuenMatKhauActivity;
 import com.example.svhtcmobile.Controller.TaiKhoanController;
 import com.example.svhtcmobile.Controller.XemDiem;
 import com.example.svhtcmobile.Model.UserInfo;
@@ -128,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         ivHP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, HocPhiSinhVienMain.class));
+                startActivity(new Intent(MainActivity.this, HocPhiSinhVienView.class));
             }
         });
         ivMonHoc.setOnClickListener(new View.OnClickListener() {
@@ -154,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         ivHPGV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, HocPhiController.class));
+                startActivity(new Intent(MainActivity.this, DanhSachHocPhi.class));
             }
         });
         ivXemDiem.setOnClickListener(new View.OnClickListener() {
@@ -172,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         ivLopTinChi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, DanhSachLopTinChi.class));
+                startActivity(new Intent(MainActivity.this, QuanTriLTC.class));
             }
         });
         ivLop.setOnClickListener(new View.OnClickListener() {

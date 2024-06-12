@@ -97,24 +97,9 @@ public class MainQuanTriGiangVien extends AppCompatActivity {
         Retrofit retrofit = ApiClient.getClient(token);
         iQuanTriThongTin = retrofit.create(IQuanTriThongTin.class);
         spKhoa = findViewById(R.id.spinnerDSK);
-        adapterGV = new AdapterGiangVien(MainQuanTriGiangVien.this, R.layout.giang_vien_item, DSGV,iQuanTriThongTin);
+        adapterGV = new AdapterGiangVien(MainQuanTriGiangVien.this, R.layout.giang_vien_item, DSGV,iQuanTriThongTin,this);
         lvGiangVienKhoa.setAdapter(adapterGV);
 
-
-//        searchView = findViewById(R.id.searchGV);
-//        searchView.clearFocus();
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                adapterGV.filterByMaGV(newText);
-//                return true;
-//            }
-//        });
         iQuanTriThongTin.locMaKhoa().enqueue(new Callback<List<String>>() {
             @Override
             public void onResponse(Call<List<String>> call, Response<List<String>> response) {
@@ -259,13 +244,16 @@ public class MainQuanTriGiangVien extends AppCompatActivity {
                     else hocham = "Không";
 
                     int selectedHocViId = radioGroupHocVi.getCheckedRadioButtonId();
-                    if (selectedHocViId == R.id.radioButtonThacSi) {
+                    if (selectedHocViId == R.id.radioButtonCuNhan) {
+                        hocvi = "Cử nhân";
+                    }
+                    else if (selectedHocViId == R.id.radioButtonThacSi) {
                         hocvi = "Thạc sĩ";
                     }
                     else if (selectedHocViId == R.id.radioButtonTienSi) {
                         hocvi = "Tiến sĩ";
                     }
-                    else hocvi = "Tiến sĩ Khoa Học";
+                    else hocvi = "Tiến sĩ khoa học";
 
                     if (check == true) {
                         GiangVien gv = new GiangVien(magv, ho, ten, hocham,hocvi,chuyenmon, sdt, magv,magv.trim()+"@.ptithcm.edu.vn",maKhoa1);
@@ -340,6 +328,9 @@ public class MainQuanTriGiangVien extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (adapterGV != null) {
+            adapterGV.handleActivityResult(requestCode, resultCode, data);
+        }
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             try {

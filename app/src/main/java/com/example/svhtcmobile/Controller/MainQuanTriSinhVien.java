@@ -26,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -88,29 +90,29 @@ public class MainQuanTriSinhVien extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                spLop.getSelectedItem().toString();
-                    malop = spLop.getSelectedItem().toString();
-                    iQuanTriThongTin.listSVByMaLop(malop).enqueue(new Callback<List<SinhVien>>() {
-                        @Override
-                        public void onResponse(Call<List<SinhVien>> call, Response<List<SinhVien>> response) {
-                            DSSV.clear();
-                            if (response.isSuccessful() && response.body() != null) {
-                                DSSV.addAll(response.body());
-                                Log.d("dSSV size", String.valueOf(DSSV.size()));
-                                adapterSV.notifyDataSetChanged();
-                                Log.e("API Response", "Success: " + response.message());
-                            } else {
-                                Log.e("API Response list sinh vien", "Error: " + response.message());
-                            }
-
+                malop = spLop.getSelectedItem().toString();
+                iQuanTriThongTin.listSVByMaLop(malop).enqueue(new Callback<List<SinhVien>>() {
+                    @Override
+                    public void onResponse(Call<List<SinhVien>> call, Response<List<SinhVien>> response) {
+                        DSSV.clear();
+                        if (response.isSuccessful() && response.body() != null) {
+                            DSSV.addAll(response.body());
+                            Log.d("dSSV size", String.valueOf(DSSV.size()));
+                            adapterSV.notifyDataSetChanged();
+                            Log.e("API Response", "Success: " + response.message());
+                        } else {
+                            Log.e("API Response list sinh vien", "Error: " + response.message());
                         }
 
+                    }
 
-                        @Override
-                        public void onFailure(Call<List<SinhVien>> call, Throwable throwable) {
-                            Log.e("API Response list sinh vien", "Failure: " + throwable.getMessage());
-                        }
 
-                    });
+                    @Override
+                    public void onFailure(Call<List<SinhVien>> call, Throwable throwable) {
+                        Log.e("API Response list sinh vien", "Failure: " + throwable.getMessage());
+                    }
+
+                });
 //                    adapterSV.notifyDataSetChanged();
 
             }
@@ -235,7 +237,6 @@ public class MainQuanTriSinhVien extends AppCompatActivity {
                         Gson gson = new Gson();
                         String dataSV = gson.toJson(sv);
                         RequestBody sv1 = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), dataSV);
-                        Log.d("Tanlog", dataSV);
                         iQuanTriThongTin.themSinhVien(sv1,in).enqueue(new Callback<JsonObject>() {
                             @Override
                             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -310,7 +311,7 @@ public class MainQuanTriSinhVien extends AppCompatActivity {
         lvSinhVienLop = findViewById(R.id.lvSinhVienLop);
 
         spLop = findViewById(R.id.spinnerDSL);
-        adapterSV = new AdapterSinhVien(MainQuanTriSinhVien.this, R.layout.sinh_vien_item, DSSV, iQuanTriThongTin);
+        adapterSV = new AdapterSinhVien(MainQuanTriSinhVien.this, R.layout.sinh_vien_item, DSSV, iQuanTriThongTin, this);
         lvSinhVienLop.setAdapter(adapterSV);
 
         iQuanTriThongTin.locMaLop().enqueue(new Callback<List<String>>() {
@@ -339,30 +340,35 @@ public class MainQuanTriSinhVien extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        // Handle activity result for adapterSV
+        if (adapterSV != null) {
+            adapterSV.handleActivityResult(requestCode, resultCode, data);
+        }
+
+        // Handle other activity results if needed
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             try {
-
                 photo = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 // Tìm ImageView trong dialogView
                 if (ivAnhSinhVien != null) {
-                    // Gán ảnh vào ImageView
                     ivAnhSinhVien.setImageBitmap(photo);
-//                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//                    photo.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-//                    byte[] byteArray = byteArrayOutputStream.toByteArray();
-//                    base64String = Base64.encodeToString(byteArray, Base64.DEFAULT);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        if( requestCode == 99 && resultCode == Activity.RESULT_OK) {
-            photo = (Bitmap) data.getExtras().get("data");
-            ivAnhSinhVien.setImageBitmap(photo);
+        if (requestCode == 99 && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            if (extras != null) {
+                photo = (Bitmap) extras.get("data");
+                if (ivAnhSinhVien != null) {
+                    ivAnhSinhVien.setImageBitmap(photo);
+                }
+            }
         }
     }
-
 
 }

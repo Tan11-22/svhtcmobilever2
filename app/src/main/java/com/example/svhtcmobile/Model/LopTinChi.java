@@ -36,7 +36,8 @@ public class LopTinChi {
 
     @SerializedName("SOSVTOITHIEU")
     private int soSVToiThieu;
-
+    @SerializedName("SOSVTOIDA")
+    private int soSVToiDa;
     @SerializedName("HUYLOP")
     private boolean huyLop;
 
@@ -45,6 +46,14 @@ public class LopTinChi {
     private String maKhoa;
 
     public LopTinChi() {
+    }
+
+    public int getSoSVToiDa() {
+        return soSVToiDa;
+    }
+
+    public void setSoSVToiDa(int soSVToiDa) {
+        this.soSVToiDa = soSVToiDa;
     }
 
     public String getMaMH() {

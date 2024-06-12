@@ -99,13 +99,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
+                <RadioButton
+                    android:id="@+id/radioButtonCuNhan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Cử nhân"
+                    android:checked="true" />
                 <RadioButton
                     android:id="@+id/radioButtonThacSi"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
-                    android:text="Thạc sĩ"
-                    android:checked="true" />
+                    android:text="Thạc sĩ"/>
 
                 <RadioButton
                     android:id="@+id/radioButtonTienSi"
