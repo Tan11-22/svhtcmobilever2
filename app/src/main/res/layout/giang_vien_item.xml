@@ -26,7 +26,7 @@
                 android:id="@+id/tvHoGV"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="7"
+                android:layout_weight="4"
                 android:gravity="center"
                 android:text="Họ" />
 
@@ -34,7 +34,7 @@
                 android:id="@+id/tvTenGV"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="7"
                 android:gravity="center"
                 android:text="Tên" />
             <TextView
@@ -48,7 +48,7 @@
                 android:id="@+id/tvSDTGV"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:gravity="center"
                 android:text="SĐT" />
 

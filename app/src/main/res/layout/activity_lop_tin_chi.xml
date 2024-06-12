@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Controller.DanhSachLopTinChi">
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -56,27 +55,11 @@
                         android:text="Quản lí lớp tín chỉ"
                         android:textSize="18dp"
                         />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tên Giảng Viên"
-                        android:id="@+id/tvTenGiangVien"
-                        android:textSize="15dp"
-                        android:textStyle="bold"/>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Khoa: "/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Công nghệ thông tin 2"
-                            android:id="@+id/tvTenKhoa"/>
-                    </LinearLayout>
+                        android:orientation="horizontal"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -114,6 +97,105 @@
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="Khoa:"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"/>
+
+                    <Spinner
+                        android:id="@+id/spKhoa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="Niên Khóa:"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spNienKhoaLTC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_marginBottom="10dp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="3"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="Niên Khóa"-->
+<!--                        android:textSize="13sp"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                    <Spinner-->
+<!--                        android:id="@+id/spNienKhoaLTC"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="7"-->
+<!--                        android:gravity="center" />-->
+<!--                </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="Học kì:"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"/>
+
+                    <Spinner
+                        android:id="@+id/spHocKi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="left" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -126,17 +208,8 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
                 android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="Lọc theo"
-                    android:gravity="center"
-                    android:layout_weight="1"/>
-                <Spinner
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2.5"
-                    android:id="@+id/spLocTheo"/>
+
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -152,40 +225,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="Thêm lớp TC mới"
+                        android:text="Thêm lớp tin chỉ mới"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="8dp"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="13sp"
-                    android:text="Chọn trường lọc"/>
-                <Spinner
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_weight="7"
-                    android:layout_gravity="left"
-                    android:id="@+id/spDkLoc" />
-            </LinearLayout>
-
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -206,19 +249,20 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:text="Mã MH"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:text="Tên MH"
                         android:textStyle="bold"
                         android:gravity="center"
                         android:textSize="12sp"
-                        android:layout_weight="3"/>
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:text="Niên khóa"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textSize="12sp"
                         android:layout_weight="2"/>
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -226,25 +270,40 @@
                         android:textStyle="bold"
                         android:gravity="right|center"
                         android:textSize="12sp"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1"
+                        android:layout_marginLeft="10dp"
+                       />
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:text="Số \nTC"
+                        android:text="Số \nSVTT"
                         android:textStyle="bold"
                         android:gravity="center"
                         android:textSize="12sp"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1"
+                        android:layout_marginLeft="10dp"
+                        />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2.5"
-                        android:gravity="left|center"
-                        android:paddingLeft="15dp"
-                        android:text="SL"
+                        android:layout_weight="1"
+                        android:gravity="center"
+
+                        android:text="Số\nSVTD"
+
                         android:textSize="12sp"
                         android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+
                 </LinearLayout>
                 <ListView
                     android:layout_width="match_parent"

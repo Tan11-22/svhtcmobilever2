@@ -21,206 +21,230 @@
         android:layout_height="match_parent">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:text="Ảnh sinh viên"
-            android:textAlignment="center"
-            android:id="@+id/tvAnhUpdate"
-            android:textSize="16dp"
-            />
-        <ImageView
-            android:id="@+id/ivAnhSinhVienUpdate"
-            android:layout_width="150dp"
-            android:layout_height="200dp"
-            android:src="@drawable/ptit"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Mã Lớp"
-            android:textSize="16dp"
-            android:id="@+id/tvMaLop"/>
-        <EditText
-            android:id="@+id/loadMaLop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:background="@drawable/bg_white_corner_10_border_gray"
-            android:enabled="false"
-            android:focusable="false"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Mã sinh viên"
-            android:textSize="16dp"
-            android:id="@+id/tvMaSV"/>
-        <EditText
-            android:id="@+id/edtMaSVUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:background="@drawable/bg_white_corner_10_border_gray"
-            android:enabled="false"
-            android:focusable="false"/>
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Họ"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:id="@+id/tvHo"/>
-        <EditText
-            android:id="@+id/edtHoSVUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:background="@drawable/bg_white_corner_10_border_gray"/>
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tên"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:id="@+id/tvTen"/>
-        <EditText
-            android:id="@+id/edtTenSVUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:background="@drawable/bg_white_corner_10_border_gray"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Giới tính"
-            android:textSize="16dp" />
-
-        <RadioGroup
-            android:id="@+id/radioGroupPhaiUpdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radioButtonMale"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:text="Nam"
-                android:checked="true" />
-
-            <RadioButton
-                android:id="@+id/radioButtonFemale"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:text="Nữ" />
-        </RadioGroup>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:text="Ngày sinh"
-            android:textSize="16dp" />
-        <EditText
-            android:id="@+id/edtNgaySinhUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:background="@drawable/bg_white_corner_10_border_gray"
-            android:inputType="date"
-            android:hint="dd-MM-yyyy (ví dụ: 01-01-2000)"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:text="Số điện thoại"
-            android:id="@+id/tvSDT"
-            android:textSize="16dp" />
-        <EditText
-            android:id="@+id/edtSDTUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:inputType="phone"
-            android:maxLength="10"
-            android:background="@drawable/bg_white_corner_10_border_gray"/>
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Địa Chỉ"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:id="@+id/tvDiaChi"/>
-        <EditText
-            android:id="@+id/edtDiaChiUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:background="@drawable/bg_white_corner_10_border_gray"/>
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:id="@+id/tvEmail"/>
-        <EditText
-            android:id="@+id/edtEmailUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:background="@drawable/bg_white_corner_10_border_gray"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-            <Button
-                android:layout_width="0dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginEnd="20dp"
-                android:backgroundTint="@android:color/darker_gray"
-                android:textSize="16sp"
-                android:id="@+id/btnHuyUpdate"
-                android:text="Hủy"/>
-            <Button
-                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:text="Ảnh sinh viên"
+                android:textAlignment="center"
+                android:id="@+id/tvAnhUpdate"
+                android:textSize="16dp"
+                />
+            <ImageView
+                android:id="@+id/ivAnhSinhVienUpdate"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:src="@drawable/ptit"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:layout_weight="1"
-                android:id="@+id/btnLuuUpdate"
-                android:backgroundTint="@color/red"
-                android:text="Lưu"/>
+                android:orientation="horizontal"
+                android:layout_below="@id/ivAnhSinhVienUpdate"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/btnChonAnhUpdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_photo_size_select_actual_24"
+                    android:contentDescription="Chọn ảnh" />
+
+                <ImageButton
+                    android:id="@+id/btnCaptureUpdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_photo_camera_24"
+                    android:contentDescription="Chụp ảnh" />
+
+            </LinearLayout>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Mã Lớp"
+                android:textSize="16dp"
+                android:id="@+id/tvMaLop"/>
+            <EditText
+                android:id="@+id/loadMaLop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"
+                android:enabled="false"
+                android:focusable="false"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Mã sinh viên"
+                android:textSize="16dp"
+                android:id="@+id/tvMaSV"/>
+            <EditText
+                android:id="@+id/edtMaSVUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"
+                android:enabled="false"
+                android:focusable="false"/>
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Họ"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:id="@+id/tvHo"/>
+            <EditText
+                android:id="@+id/edtHoSVUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"/>
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:id="@+id/tvTen"/>
+            <EditText
+                android:id="@+id/edtTenSVUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Giới tính"
+                android:textSize="16dp" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupPhaiUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButtonMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Nam"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:text="Nữ" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:text="Ngày sinh"
+                android:textSize="16dp" />
+            <EditText
+                android:id="@+id/edtNgaySinhUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"
+                android:inputType="date"
+                android:hint="dd-MM-yyyy (ví dụ: 01-01-2000)"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:text="Số điện thoại"
+                android:id="@+id/tvSDT"
+                android:textSize="16dp" />
+            <EditText
+                android:id="@+id/edtSDTUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:background="@drawable/bg_white_corner_10_border_gray"/>
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Địa Chỉ"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:id="@+id/tvDiaChi"/>
+            <EditText
+                android:id="@+id/edtDiaChiUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"/>
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:id="@+id/tvEmail"/>
+            <EditText
+                android:id="@+id/edtEmailUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@drawable/bg_white_corner_10_border_gray"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="20dp"
+                    android:backgroundTint="@android:color/darker_gray"
+                    android:textSize="16sp"
+                    android:id="@+id/btnHuyUpdate"
+                    android:text="Hủy"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:id="@+id/btnLuuUpdate"
+                    android:backgroundTint="@color/red"
+                    android:text="Lưu"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
     </ScrollView>
 </LinearLayout>

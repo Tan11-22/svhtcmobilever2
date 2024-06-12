@@ -26,7 +26,7 @@
                 android:id="@+id/tvHoSV"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="7"
+                android:layout_weight="4"
                 android:gravity="center"
                 android:text="Họ" />
 
@@ -34,7 +34,7 @@
                 android:id="@+id/tvTenSV"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
+                android:layout_weight="7"
                 android:gravity="center"
                 android:text="Tên" />
 
@@ -42,17 +42,9 @@
                 android:id="@+id/tvSDT"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:gravity="center"
-                android:text="SĐT" />
-
-            <TextView
-                android:id="@+id/tvDiaChi"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
                 android:layout_weight="5"
                 android:gravity="center"
-                android:text="Địa Chỉ" />
+                android:text="SĐT" />
             <ImageButton
                 android:id="@+id/imbtnDaNghiHoc"
                 android:layout_width="15dp"

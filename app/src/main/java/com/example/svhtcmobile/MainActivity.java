@@ -28,18 +28,24 @@ import com.example.svhtcmobile.Api.apiService.ILoginService;
 import com.example.svhtcmobile.Controller.CTDTController;
 import com.example.svhtcmobile.Controller.DKLopTinChiMain;
 import com.example.svhtcmobile.Controller.DanhSachHeDaoTao;
+import com.example.svhtcmobile.Controller.DanhSachHocPhi;
 import com.example.svhtcmobile.Controller.DanhSachLop;
-import com.example.svhtcmobile.Controller.DanhSachLopTinChi;
+//import com.example.svhtcmobile.Controller.DanhSachLopTinChi;
 import com.example.svhtcmobile.Controller.DanhSachMonHocGV;
 import com.example.svhtcmobile.Controller.DanhSachNganh;
+//import com.example.svhtcmobile.Controller.DoiMatKhauActivity;
+//import com.example.svhtcmobile.Controller.HocPhiController;
 import com.example.svhtcmobile.Controller.DoiMatKhauActivity;
-import com.example.svhtcmobile.Controller.HocPhiController;
 import com.example.svhtcmobile.Controller.HocPhiSinhVienMain;
+import com.example.svhtcmobile.Controller.HocPhiSinhVienView;
 import com.example.svhtcmobile.Controller.KhoaController;
 import com.example.svhtcmobile.Controller.MainQuanTriGiangVien;
+//import com.example.svhtcmobile.Controller.MainQuanTriMonHoc;
 import com.example.svhtcmobile.Controller.MainQuanTriMonHoc;
 import com.example.svhtcmobile.Controller.MainQuanTriSinhVien;
 import com.example.svhtcmobile.Controller.MainThongTinSVGV;
+import com.example.svhtcmobile.Controller.QuanTriLTC;
+//import com.example.svhtcmobile.Controller.QuenMatKhauActivity;
 import com.example.svhtcmobile.Controller.QuenMatKhauActivity;
 import com.example.svhtcmobile.Controller.TaiKhoanController;
 import com.example.svhtcmobile.Controller.XemDiem;
@@ -98,12 +104,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        ivKhoa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, KhoaController.class));
-            }
-        });
+//        ivKhoa.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, KhoaController.class));
+//            }
+//        });
 
         ivSinhVien.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         ivHP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, HocPhiSinhVienMain.class));
+                startActivity(new Intent(MainActivity.this, HocPhiSinhVienView.class));
             }
         });
         ivMonHoc.setOnClickListener(new View.OnClickListener() {
@@ -141,12 +147,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, MainQuanTriMonHoc.class));
             }
         });
-        ivAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TaiKhoanController.class));
-            }
-        });
+//        ivAccount.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, TaiKhoanController.class));
+//            }
+//        });
         ivHinhAnh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         ivHPGV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, HocPhiController.class));
+                startActivity(new Intent(MainActivity.this, DanhSachHocPhi.class));
             }
         });
         ivXemDiem.setOnClickListener(new View.OnClickListener() {
@@ -176,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         ivLopTinChi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, DanhSachLopTinChi.class));
+                startActivity(new Intent(MainActivity.this, QuanTriLTC.class));
             }
         });
         ivLop.setOnClickListener(new View.OnClickListener() {
@@ -185,25 +191,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, DanhSachLop.class));
             }
         });
-        ivHe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, DanhSachHeDaoTao.class));
-            }
-        });
-        ivNganh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, DanhSachNganh.class));
-            }
-        });
-
-        ivCTDT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CTDTController.class));
-            }
-        });
+//        ivHe.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, DanhSachHeDaoTao.class));
+//            }
+//        });
+//        ivNganh.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, DanhSachNganh.class));
+//            }
+//        });
+//
+//        ivCTDT.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this, CTDTController.class));
+//            }
+//        });
     }
 
     private void setControl() {
@@ -212,8 +218,8 @@ public class MainActivity extends AppCompatActivity {
         tvMa = findViewById(R.id.tvMa);
         tvChuaDangNhap = findViewById(R.id.tvChuaDangNhap);
         tvDangNhap = findViewById(R.id.tvDangNhap);
-        ivKhoa = findViewById(R.id.ivKhoa);
-        ivAccount = findViewById(R.id.ivAccount);
+//        ivKhoa = findViewById(R.id.ivKhoa);
+//        ivAccount = findViewById(R.id.ivAccount);
         ivLTC = findViewById(R.id.ivLTC);
         ivHP=findViewById(R.id.ivHP);
         ivMonHoc=findViewById(R.id.ivMonHoc);
@@ -226,9 +232,9 @@ public class MainActivity extends AppCompatActivity {
         ivNhapDiem = findViewById(R.id.ivNhapDiem);
         ivLopTinChi = findViewById(R.id.ivLopTinChi);
         ivLop = findViewById(R.id.ivLop);
-        ivHe = findViewById(R.id.ivHe);
-        ivNganh = findViewById(R.id.ivNganh);
-        ivCTDT = findViewById(R.id.ivCTDT);
+//        ivHe = findViewById(R.id.ivHe);
+//        ivNganh = findViewById(R.id.ivNganh);
+//        ivCTDT = findViewById(R.id.ivCTDT);
         llGV = findViewById(R.id.llGV);
         llSV = findViewById(R.id.llSV);
         llChuaDN = findViewById(R.id.llChuaDN);

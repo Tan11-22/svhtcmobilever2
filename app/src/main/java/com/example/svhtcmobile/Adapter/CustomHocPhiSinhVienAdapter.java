@@ -53,7 +53,7 @@ public class CustomHocPhiSinhVienAdapter extends ArrayAdapter {
         TextView tvHocPhi = convertView.findViewById(R.id.tvHocPhi);
         TextView tvDaDong = convertView.findViewById(R.id.tvDaDong);
         TextView tvNo=convertView.findViewById(R.id.tvNo);
-        ImageView ivXuatPDF = convertView.findViewById(R.id.ivXuatPDF);
+//        ImageView ivXuatPDF = convertView.findViewById(R.id.ivXuatPDF);
         HocPhiSinhVien hp = data.get(position);
         tvNienKhoa.setText(hp.getNienKhoa());
         tvHocKy.setText(String.valueOf(hp.getHocKy()));
@@ -71,50 +71,50 @@ public class CustomHocPhiSinhVienAdapter extends ArrayAdapter {
         Log.e("logchecktoken", token);
         Retrofit retrofit = ApiClient.getClient(token);
         ILoginService iLoginService = retrofit.create(ILoginService.class);
-        ivXuatPDF.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ApiClient.askPermissions((Activity) context);
-                View view = LayoutInflater.from(context).inflate(R.layout.layout_hoa_don,null);
-                TextView tvHoTen = view.findViewById(R.id.tvHoTen);
-                TextView tvMaSV = view.findViewById(R.id.tvMaSV);
-                ListView lvCTDHP = view.findViewById(R.id.lvCTDHP);
-                lvCTDHP.setVisibility(View.VISIBLE);
-                TextView tvTongTien = view.findViewById(R.id.tvTongTien);
-
-
-                iLoginService.getDanhSachCTHP(username, hp.getNienKhoa(), hp.getHocKy()).enqueue(new Callback<List<JsonObject>>() {
-                    @Override
-                    public void onResponse(Call<List<JsonObject>> call, Response<List<JsonObject>> response) {
-                        if(response.code() == 200) {
-                            tvHoTen.setText(tvHoTen.getText().toString()+" "+ho+" "+ten);
-                            tvMaSV.setText(tvMaSV.getText().toString()+" "+ username);
-                            data1 = response.body();
-                            CustomAdapterHoaDon customAdapterHoaDon = new CustomAdapterHoaDon(context,R.layout.layout_item_hoa_don, data1);
-                            lvCTDHP.setAdapter(customAdapterHoaDon);
-                            int tongTien = 0;
-                            for (JsonObject js: response.body()){
-                                int soTien = js.get("SOTIENDONG").getAsInt();
-                                tongTien += soTien;
-                            }
-                            tvTongTien.setText(String.valueOf(tongTien));
-                            Log.d("myloghocphi", data1.toString());
-                            ApiClient.convertXMLToPDF((Activity) context,view,filePDFName);
-                            Toast.makeText(context, "Save PDF thanh Công", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            Toast.makeText(context, "Bug", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<JsonObject>> call, Throwable throwable) {
-
-                    }
-                });
-
-            }
-        });
+//        ivXuatPDF.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ApiClient.askPermissions((Activity) context);
+//                View view = LayoutInflater.from(context).inflate(R.layout.layout_hoa_don,null);
+//                TextView tvHoTen = view.findViewById(R.id.tvHoTen);
+//                TextView tvMaSV = view.findViewById(R.id.tvMaSV);
+//                ListView lvCTDHP = view.findViewById(R.id.lvCTDHP);
+//                lvCTDHP.setVisibility(View.VISIBLE);
+//                TextView tvTongTien = view.findViewById(R.id.tvTongTien);
+//
+//
+//                iLoginService.getDanhSachCTHP(username, hp.getNienKhoa(), hp.getHocKy()).enqueue(new Callback<List<JsonObject>>() {
+//                    @Override
+//                    public void onResponse(Call<List<JsonObject>> call, Response<List<JsonObject>> response) {
+//                        if(response.code() == 200) {
+//                            tvHoTen.setText(tvHoTen.getText().toString()+" "+ho+" "+ten);
+//                            tvMaSV.setText(tvMaSV.getText().toString()+" "+ username);
+//                            data1 = response.body();
+//                            CustomAdapterHoaDon customAdapterHoaDon = new CustomAdapterHoaDon(context,R.layout.layout_item_hoa_don, data1);
+//                            lvCTDHP.setAdapter(customAdapterHoaDon);
+//                            int tongTien = 0;
+//                            for (JsonObject js: response.body()){
+//                                int soTien = js.get("SOTIENDONG").getAsInt();
+//                                tongTien += soTien;
+//                            }
+//                            tvTongTien.setText(String.valueOf(tongTien));
+//                            Log.d("myloghocphi", data1.toString());
+//                            ApiClient.convertXMLToPDF((Activity) context,view,filePDFName);
+//                            Toast.makeText(context, "Save PDF thanh Công", Toast.LENGTH_SHORT).show();
+//                        }
+//                        else {
+//                            Toast.makeText(context, "Bug", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<List<JsonObject>> call, Throwable throwable) {
+//
+//                    }
+//                });
+//
+//            }
+//        });
         return convertView;
     }
 }

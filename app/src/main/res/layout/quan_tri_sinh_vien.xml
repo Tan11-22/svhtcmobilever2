@@ -199,16 +199,16 @@
                         android:layout_height="wrap_content"
                         android:text="Mã SV"
                         android:textStyle="bold"
-                        android:paddingLeft="5dp"/>
+                        android:paddingLeft="5dp"
+                        android:layout_weight="2"/>
+
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Họ"
                         android:textStyle="bold"
-
-
-                        android:paddingLeft="40dp" />
+                        android:paddingLeft="60dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -216,7 +216,7 @@
                         android:text="Tên"
                         android:textStyle="bold"
 
-                        android:paddingLeft="30dp" />
+                        android:paddingLeft="60dp" />
 
 
                     <TextView
@@ -224,15 +224,7 @@
                         android:layout_height="wrap_content"
                         android:text="SĐT"
                         android:textStyle="bold"
-                        android:layout_weight="10"
-                        android:paddingLeft="20dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Địa Chỉ"
-                        android:textStyle="bold"
-                        android:layout_weight="10"
-                        android:paddingLeft="15dp" />
+                        android:paddingLeft="70dp" />
 
                 </LinearLayout>
                 <ListView
