@@ -43,6 +43,7 @@ import com.example.svhtcmobile.Controller.MainThongTinSVGV;
 import com.example.svhtcmobile.Controller.QuenMatKhauActivity;
 import com.example.svhtcmobile.Controller.TaiKhoanController;
 import com.example.svhtcmobile.Controller.XemDiem;
+import com.example.svhtcmobile.Model.ApiResponse;
 import com.example.svhtcmobile.Model.UserInfo;
 import com.google.gson.JsonObject;
 
@@ -296,7 +297,7 @@ public class MainActivity extends AppCompatActivity {
                         if (response.code() == 200) {
                             JsonObject jsonObject= response.body();
                             userInfo = mapJsonObjectToUI(jsonObject);
-                            showInfo(userInfo);
+
                             saveTokenAccount(username, jsonObject.get("token").getAsString(),jsonObject.get("role").getAsString());
                             if(jsonObject.get("role").getAsString().equals("GIANGVIEN")){
                                             llGV.setVisibility(View.VISIBLE);
@@ -304,8 +305,30 @@ public class MainActivity extends AppCompatActivity {
                                             llSV.setVisibility(View.VISIBLE);
                             }
                             llChuaDN.setVisibility(View.GONE);
-//                            Retrofit retrofit = ApiClient.getClient(jsonObject.get("accessToken").getAsString());
-//                            iLoginService = retrofit.create(ILoginService.class);
+
+                            Retrofit retrofit = ApiClient.getClient(jsonObject.get("token").getAsString());
+                            iLoginService = retrofit.create(ILoginService.class);
+                            iLoginService.getThongTin(username,jsonObject.get("role").getAsString()).enqueue(new Callback<ApiResponse<JsonObject>>() {
+                                @Override
+                                public void onResponse(Call<ApiResponse<JsonObject>> call, Response<ApiResponse<JsonObject>> response) {
+                                    ApiResponse<JsonObject> apiResponse = response.body();
+                                    if (apiResponse.getCode()==200){
+                                        JsonObject jO1 = apiResponse.getData();
+                                        String ho = jO1.get("HO").getAsString();
+                                        String ten = jO1.get("TEN").getAsString();
+                                        userInfo.setHo(ho);
+                                        userInfo.setTen(ten);
+                                        saveNameAccount(ho,ten);
+                                        showInfo(userInfo);
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ApiResponse<JsonObject>> call, Throwable throwable) {
+
+                                }
+                            });
+
 //                            iLoginService.getInfo(username).enqueue(new Callback<JsonObject>() {
 //                                @Override
 //                                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -360,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void showInfo(UserInfo userInfo) {
 
-//        tvTen.setText(userInfo.getHo() + " "+userInfo.getTen());
+        tvTen.setText(userInfo.getHo() + " "+userInfo.getTen());
         tvMa.setText("Mã: "+ userInfo.getUsername()+ " - "+userInfo.getTenQuyen());
         tvTen.setVisibility(View.VISIBLE);
         tvMa.setVisibility(View.VISIBLE);
@@ -399,12 +422,11 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("quyen", quyen);
         editor.apply();
     }
-    private void saveNameAccountandRole(String ho, String ten, String quyen){
+    private void saveNameAccount(String ho, String ten){
         accountSharedPref = getSharedPreferences("Account", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = accountSharedPref.edit();
         editor.putString("ho", ho);
         editor.putString("ten", ten);
-        editor.putString("quyen", quyen);
         editor.apply();
     }
 
