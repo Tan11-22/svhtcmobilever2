@@ -19,7 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.svhtcmobile.Adapter.AdapterMonHoc;
 import com.example.svhtcmobile.Api.ApiClient;
 import com.example.svhtcmobile.Api.apiService.ILoginService;
-import com.example.svhtcmobile.Api.apiService.IQuanTriThongTin;
+import com.example.svhtcmobile.Api.apiService.IMonHocService;
+
+import com.example.svhtcmobile.Model.ApiResponse;
 import com.example.svhtcmobile.Model.MonHoc;
 
 import java.util.ArrayList;
@@ -30,7 +32,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import com.example.svhtcmobile.Model.UserInfo;
 import com.example.svhtcmobile.R;
+import com.google.gson.JsonObject;
+
 public class MainQuanTriMonHoc extends AppCompatActivity {
 
     private ImageButton imgBtnBack, imgBtnLogout, btnAddMH;
@@ -39,7 +44,7 @@ public class MainQuanTriMonHoc extends AppCompatActivity {
     ArrayList<MonHoc> danhSachMonHoc = new ArrayList<>();
     AdapterMonHoc adapter;
     SharedPreferences accountSharedPref;
-    IQuanTriThongTin iQuanTriThongTin;
+    IMonHocService iMonHocService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,17 +65,24 @@ public class MainQuanTriMonHoc extends AppCompatActivity {
         accountSharedPref = getSharedPreferences("Account", Context.MODE_PRIVATE);
         String token = accountSharedPref.getString("token", "");
         Retrofit retrofit = ApiClient.getClient(token);
-        iQuanTriThongTin = retrofit.create(IQuanTriThongTin.class);
+        iMonHocService = retrofit.create(IMonHocService.class);
 
-        iQuanTriThongTin.danhSachMonHoc().enqueue(new Callback<List<MonHoc>>() {
+        iMonHocService.danhSachMonHoc(0,10000).enqueue(new Callback<ApiResponse<List<JsonObject>>>() {
             @Override
-            public void onResponse(Call<List<MonHoc>> call, Response<List<MonHoc>> response) {
+            public void onResponse(Call<ApiResponse<List<JsonObject>>> call, Response<ApiResponse<List<JsonObject>>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-
-
-                    danhSachMonHoc.addAll(response.body());
-                    adapter = new AdapterMonHoc(MainQuanTriMonHoc.this, R.layout.mon_hoc_item, danhSachMonHoc,iQuanTriThongTin);
+                    ApiResponse<List<JsonObject>> response1 = response.body();
+                    Log.d("API Response", response1.getStatus());
+                    for(JsonObject jo: response1.getData()) {
+                        JsonObject jo1 = jo.get("monHoc").getAsJsonObject();
+                        Log.d("API Response", jo1.get("tenMH").getAsString());
+                        MonHoc mh1 = mapJsonObjectToMonHoc(jo1);
+                        danhSachMonHoc.add(mh1);
+                    }
+//                    danhSachMonHoc.addAll(response1.getData());
+                    adapter = new AdapterMonHoc(MainQuanTriMonHoc.this, R.layout.mon_hoc_item, danhSachMonHoc,iMonHocService);
                     lvMonHoc.setAdapter(adapter);
+                    Log.d("API Response", "Api response: " +response1.toString());
                     Log.e("API Response", "Success: " + response.message());
                 } else {
                     Log.e("API Response", "Error: " + response.message());
@@ -79,7 +91,7 @@ public class MainQuanTriMonHoc extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<MonHoc>> call, Throwable throwable) {
+            public void onFailure(Call<ApiResponse<List<JsonObject>>> call, Throwable throwable) {
                 Log.e("API Response", "Error: " + throwable.getMessage());
 
             }  });
@@ -143,9 +155,9 @@ public class MainQuanTriMonHoc extends AppCompatActivity {
                     if (check == true){
                         MonHoc monHocMoi = new MonHoc(maMH,tenMH, soTietLT, soTietTH,soTinChi);
 
-                        iQuanTriThongTin.themMonHocMoi(monHocMoi).enqueue(new Callback<Void>() {
+                        iMonHocService.themMonHocMoi(monHocMoi).enqueue(new Callback<ApiResponse>() {
                             @Override
-                            public void onResponse(Call<Void> call, Response<Void> response) {
+                            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                                 if (response.isSuccessful()) {
                                     danhSachMonHoc.add(monHocMoi);
 
@@ -160,7 +172,7 @@ public class MainQuanTriMonHoc extends AppCompatActivity {
                             }
 
                             @Override
-                            public void onFailure(Call<Void> call, Throwable t) {
+                            public void onFailure(Call<ApiResponse> call, Throwable t) {
                                 // Xử lý khi có lỗi xảy ra
                             }
                         });
@@ -189,7 +201,15 @@ public class MainQuanTriMonHoc extends AppCompatActivity {
 
         });
     }
-
+    private MonHoc mapJsonObjectToMonHoc(JsonObject jsonObject) {
+        MonHoc mh = new MonHoc();
+        mh.setMaMH(jsonObject.get("maMH").getAsString());
+        mh.setTenMH(jsonObject.get("tenMH").getAsString());
+        mh.setSoTietLT(jsonObject.get("soTietLT").getAsInt());
+        mh.setSoTietTH(jsonObject.get("soTietTH").getAsInt());
+        mh.setSoTinChi(jsonObject.get("soTinChi").getAsInt());
+        return mh;
+    }
 
 
 }

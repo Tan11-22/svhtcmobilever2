@@ -25,14 +25,20 @@ import androidx.appcompat.widget.SearchView;
 
 import com.example.svhtcmobile.Adapter.CustomAdapterLop;
 import com.example.svhtcmobile.Api.ApiClient;
+import com.example.svhtcmobile.Api.apiService.ILopService;
 import com.example.svhtcmobile.Api.apiService.IQuanTriService;
+import com.example.svhtcmobile.Model.ApiResponse;
 import com.example.svhtcmobile.Model.He;
 import com.example.svhtcmobile.Model.LopDTO;
+import com.example.svhtcmobile.Model.LopDTO1;
 import com.example.svhtcmobile.Model.TTGiangVienAPI;
 import com.example.svhtcmobile.R;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,9 +49,9 @@ public class DanhSachLop extends AppCompatActivity {
     private List<String> trangThai = new ArrayList<>();
     private Spinner spTrangThai;
     private ArrayAdapter adapter_spTrangThai;
-    private  List<LopDTO> data = new ArrayList<>();
+    private  List<LopDTO1> data = new ArrayList<>();
 
-    private  List<LopDTO> data_all = new ArrayList<>();
+    private  List<LopDTO1> data_all = new ArrayList<>();
     private CustomAdapterLop adapterLop;
     private ListView lvLop;
     private ImageButton imgBtnThemLop, imgBtnBack;
@@ -54,14 +60,14 @@ public class DanhSachLop extends AppCompatActivity {
     private TextView tvTenGiangVien, tvTenKhoa, tvTenKhoa1;
     private SharedPreferences sharedPreferences;
     private IQuanTriService iQuanTriService;
+
+    private ILopService iLopService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_danh_sach_lop);
         Init();
-        DocDuLieuThonTinCaNhan();
-        setDuLieuTrangThaiLop();
-        DocDuLieuLop();
+
         setEvent();
     }
 
@@ -79,17 +85,7 @@ public class DanhSachLop extends AppCompatActivity {
                 openDialog(maKhoa);
             }
         });
-        spTrangThai.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                DocDuLieuLop();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
         searchViewLop.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -99,21 +95,12 @@ public class DanhSachLop extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 data.clear();
-                if(newText.equals("")){
-                    for(LopDTO lop : data_all){
-                        if(lop.getTrangThai() == (getTrangThaiSpinner() == 1)){
-                            data.add(lop);
-                        }
-                    }
-                    setAdapterLop();
-                } else {
-                    for(LopDTO lop : data_all){
-                        if(lop.getMaLop().toLowerCase().contains(newText.toLowerCase()) && lop.getTrangThai() == (getTrangThaiSpinner() == 1)){
-                            data.add(lop);
-                        }
+                for (LopDTO1 lop: data_all) {
+                    if(lop.getMaLop().toLowerCase().contains(newText.toLowerCase())) {
+                        data.add(lop);
                     }
                 }
-                setAdapterLop();
+                adapterLop.notifyDataSetChanged();
                 return false;
             }
         });
@@ -141,23 +128,55 @@ public class DanhSachLop extends AppCompatActivity {
         EditText edtNamBatDau = dialog.findViewById(R.id.edtNamBatDau);
         EditText edtNamKetThuc = dialog.findViewById(R.id.edtNamKetThuc);
         Spinner spHeDaoTao = dialog.findViewById(R.id.spHeDaoTao);
+        Spinner spKhoa = dialog.findViewById(R.id.spKhoa);
         List<He> danhSachHeDaoTao = new ArrayList<>();
+        List<String> danhSachKhoa = new ArrayList<>();
 
-        iQuanTriService.danhSachHeDaoTao().enqueue(new Callback<List<He>>() {
+        iLopService.danhSachHe().enqueue(new Callback<ApiResponse<List<JsonObject>>>() {
             @Override
-            public void onResponse(Call<List<He>> call, Response<List<He>> response) {
-                if(response.code() == 200){
-                    danhSachHeDaoTao.addAll(response.body());
-                    ArrayAdapter adapter_spHeDaoTao = new ArrayAdapter(dialog.getContext(), R.layout.layout_spinner, danhSachHeDaoTao);
-                    spHeDaoTao.setAdapter(adapter_spHeDaoTao);
+            public void onResponse(Call<ApiResponse<List<JsonObject>>> call, Response<ApiResponse<List<JsonObject>>> response) {
+                ApiResponse<List<JsonObject>> apiResponse = response.body();
+                if (apiResponse.getCode() == 200) {
+                    List<JsonObject> hes = apiResponse.getData();
+                    for (JsonObject he : hes) {
+                        He he1 = new He(he.get("ID_HE").getAsInt(), he.get("TEN_HE").getAsString());
+                        danhSachHeDaoTao.add(he1);
+                        ArrayAdapter adapter_spHeDaoTao = new ArrayAdapter(dialog.getContext(), R.layout.layout_spinner, danhSachHeDaoTao);
+                        spHeDaoTao.setAdapter(adapter_spHeDaoTao);
+                    }
+                }else {
+                    Toast.makeText(DanhSachLop.this,"Không thể tải dữ liệu!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<He>> call, Throwable throwable) {
+            public void onFailure(Call<ApiResponse<List<JsonObject>>> call, Throwable throwable) {
 
             }
         });
+        iLopService.danhSachKhoa().enqueue(new Callback<ApiResponse<List<JsonObject>>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<List<JsonObject>>> call, Response<ApiResponse<List<JsonObject>>> response) {
+                ApiResponse<List<JsonObject>> apiResponse = response.body();
+                if (apiResponse.getCode() == 200) {
+                   List<JsonObject> khoas = apiResponse.getData();
+                   for(JsonObject khoa : khoas) {
+                       String khoa1 = khoa.get("makhoa").getAsString().trim() + "-"+khoa.get("tenkhoa").getAsString();
+                       danhSachKhoa.add(khoa1);
+                       ArrayAdapter adapter_spKhoa = new ArrayAdapter(dialog.getContext(), R.layout.layout_spinner, danhSachKhoa);
+                       spKhoa.setAdapter(adapter_spKhoa);
+                   }
+                }else {
+                    Toast.makeText(DanhSachLop.this,"Không thể tải dữ liệu!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<List<JsonObject>>> call, Throwable throwable) {
+
+            }
+        });
+//
 
         btnHuy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,34 +188,32 @@ public class DanhSachLop extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LopDTO lop = new LopDTO();
-                lop.setMaLop(edtMaLop.getText().toString());
-                lop.setTenLop(edtTenLop.getText().toString());
-                lop.setTrangThai(true);
-                lop.setMaKhoa(maKhoa);
-                lop.setKhoaHoc(edtNamBatDau.getText().toString() + "-" + edtNamKetThuc.getText().toString());
+                Map<String, Object> dataRequset = new HashMap<>();
+                dataRequset.put("maLop", edtMaLop.getText().toString().trim());
+                dataRequset.put("tenLop",edtTenLop.getText().toString().trim());
+                dataRequset.put("khoaHoc1",edtNamBatDau.getText().toString().trim() );
+                dataRequset.put("khoaHoc2", edtNamKetThuc.getText().toString().trim());
+                String maKhoa = spKhoa.getSelectedItem().toString().split("-")[0];
+                dataRequset.put("maKhoa", maKhoa);
                 String tmp = spHeDaoTao.getSelectedItem().toString();
                 for(He he : danhSachHeDaoTao){
                     if(tmp.equals(he.getTenHe())){
-                        lop.setIdHe(he.getId());
+                        dataRequset.put("idHe", he.getId());
                     }
                 }
-                iQuanTriService.themLop(lop).enqueue(new Callback<Void>() {
+                iLopService.themLopHocMoi(dataRequset).enqueue(new Callback<ApiResponse>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        if(response.code() == 200){
-                            dialog.dismiss();
-                            data.add(lop);
-                            adapterLop.notifyDataSetChanged();
-                            Toast.makeText(DanhSachLop.this, "Thêm lớp thành công", Toast.LENGTH_LONG).show();
-                        } else if (response.code() == 400) {
-                            Toast.makeText(DanhSachLop.this, "Thêm lớp thất bại", Toast.LENGTH_LONG).show();
+                    public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                        ApiResponse apiResponse = response.body();
+                        Toast.makeText(DanhSachLop.this,apiResponse.getStatus(),Toast.LENGTH_SHORT).show();
+                        if (apiResponse.getCode() == 200) {
+                            loadData();
                             dialog.dismiss();
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable throwable) {
+                    public void onFailure(Call<ApiResponse> call, Throwable throwable) {
 
                     }
                 });
@@ -208,67 +225,9 @@ public class DanhSachLop extends AppCompatActivity {
         dialog.show();
     }
 
-    private void setDuLieuTrangThaiLop() {
-        trangThai.add("Mở");
-        trangThai.add("Đóng");
-        adapter_spTrangThai = new ArrayAdapter(DanhSachLop.this, R.layout.layout_spinner, trangThai);
-        spTrangThai.setAdapter(adapter_spTrangThai);
-    }
-    public void DocDuLieuThonTinCaNhan(){
-        iQuanTriService.thongTinGiangVien(maGV).enqueue(new Callback<TTGiangVienAPI>() {
-            @Override
-            public void onResponse(Call<TTGiangVienAPI> call, Response<TTGiangVienAPI> response) {
-                if(response.code() == 200){
-                    TTGiangVienAPI thongTin = response.body();
-                    tvTenGiangVien.setText(thongTin .getHo() + " " + thongTin.getTen());
-                    tvTenKhoa.setText(thongTin.getTenKhoa());
-                    maKhoa = thongTin.getMaKhoa();
-                    tvTenKhoa1.setText(thongTin.getTenKhoa());
-                }
-            }
 
-            @Override
-            public void onFailure(Call<TTGiangVienAPI> call, Throwable throwable) {
 
-            }
-        });
-    }
-    public void DocDuLieuLop(){
-        iQuanTriService.danhSachLopCuaKhoa(maGV, getTrangThaiSpinner()).enqueue(new Callback<List<LopDTO>>() {
-            @Override
-            public void onResponse(Call<List<LopDTO>> call, Response<List<LopDTO>> response) {
-                if(response.code() == 200){
-                    data.clear();
-                    data_all.clear();
-                    List<LopDTO> listLop = response.body();
-                    for(LopDTO tmp : listLop){
-                        tmp.setTrangThai(getTrangThaiSpinner() == 1);
-//                        Toast.makeText(DanhSachLop.this, tmp.getTenLop() + "", Toast.LENGTH_LONG).show();
-                    }
 
-                    data.addAll(listLop);
-                    data_all.addAll(data);
-
-                    setAdapterLop();
-                }
-            }
-            @Override
-            public void onFailure(Call<List<LopDTO>> call, Throwable throwable) {
-
-            }
-        });
-    }
-
-    private void setAdapterLop(){
-        adapterLop = new CustomAdapterLop(this, R.layout.layout_item_lop, data);
-        lvLop.setAdapter(adapterLop);
-    }
-
-    public int getTrangThaiSpinner(){
-        if(spTrangThai.getSelectedItem().toString().equals("Mở"))
-            return 1;
-        return 0;
-    }
 
 
     private void Init() {
@@ -280,15 +239,44 @@ public class DanhSachLop extends AppCompatActivity {
         String quyen = sharedPreferences.getString("quyen", "");
         Retrofit retrofit = ApiClient.getClient(token);
         iQuanTriService = retrofit.create(IQuanTriService.class);
+        iLopService = retrofit.create(ILopService.class);
         maGV = username;
 
-        spTrangThai = findViewById(R.id.spTrangThai);
+//        spTrangThai = findViewById(R.id.spTrangThai);
         lvLop = findViewById(R.id.lvLop);
         imgBtnThemLop = findViewById(R.id.imgBtnThemLop);
         searchViewLop = findViewById(R.id.searchViewLop);
         tvTenGiangVien = findViewById(R.id.tvTenGiangVien);
         tvTenKhoa = findViewById(R.id.tvTenKhoa);
-        tvTenKhoa1 = findViewById(R.id.tvTenKhoa1);
+//        tvTenKhoa1 = findViewById(R.id.tvTenKhoa1);
         imgBtnBack = findViewById(R.id.imgBtnBack);
+        adapterLop = new CustomAdapterLop(this, R.layout.layout_item_lop, data);
+        lvLop.setAdapter(adapterLop);
+        loadData();
+    }
+
+    public void loadData() {
+        iLopService.danhSachLopHoc(0,10000).enqueue(new Callback<ApiResponse<List<LopDTO1>>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<List<LopDTO1>>> call, Response<ApiResponse<List<LopDTO1>>> response) {
+                ApiResponse<List<LopDTO1>> apiResponse = response.body();
+                if (apiResponse.getCode() == 200) {
+                    List<LopDTO1> lops = apiResponse.getData();
+                    data.clear();
+                    data_all.clear();
+                    data.addAll(lops);
+                    data_all.addAll(lops);
+                    adapterLop.notifyDataSetChanged();
+                }
+                else {
+                    Toast.makeText(DanhSachLop.this,"Load data lớp thất bại!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<List<LopDTO1>>> call, Throwable throwable) {
+
+            }
+        });
     }
 }
